@@ -23,7 +23,7 @@ int count = 0;
         count = (M/2) * N ;
     }else if(N >= 2 && M < 2){
         count = (N/2) * M ;
-    }else if()
+    }else if(M == 2)
 System.out.println(count);
         input.close();
     }

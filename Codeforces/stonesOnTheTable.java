@@ -16,7 +16,7 @@ public class stonesOnTheTable {
         }
 
         System.out.println(rmvStone);
-       
+    sc.close();  
     }
     
 }

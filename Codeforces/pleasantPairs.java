@@ -27,7 +27,7 @@ public class pleasantPairs {
         
 
     for(int i=0 ;i<3 ; i++){
-        System.out.print(answer[i]+" ");
+        System.out.println(answer[i]);
         }
 
         sc.close();

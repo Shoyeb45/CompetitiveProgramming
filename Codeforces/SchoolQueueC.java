@@ -6,7 +6,9 @@ public class SchoolQueueC {
         int n = sc.nextInt() , t = sc.nextInt();
         String queueLine = sc.next();
         char[] queue = queueLine.toCharArray();   
-int i = 0 ; 
+
+while(t--> 0){
+    int i = 0 ; 
 while(i < n-1){
     if(queue[i] == 'B' && queue[i+1] == 'G'){
         queue[i] = 'G'; queue[i+1] = 'B' ;
@@ -16,9 +18,10 @@ while(i < n-1){
     }
      
 }
+}
             
 
-        for(i=0 ; i<queue.length ; i++){
+        for(int i=0 ; i<queue.length ; i++){
             System.out.print(queue[i]);
         }
 

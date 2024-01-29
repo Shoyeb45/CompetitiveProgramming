@@ -26,7 +26,7 @@ public class ld {
            
         }
         for(int i=2 ; i<n+1 ; i++){
-            System.out.print(isPrime[i]+" ");
+            System.out.println("Least divisor of "+i+" " + isPrime[i]);
         }
         sc.close();
     }

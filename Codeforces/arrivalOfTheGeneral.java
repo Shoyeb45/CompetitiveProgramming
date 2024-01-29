@@ -9,7 +9,7 @@ public class arrivalOfTheGeneral {
             line[i] = sc.nextInt();
         }
 
-        int max = line[0], min = line[n-1];
+        int max = line[0], min = line[0];
         for(int i=0 ; i<n ; i++){
             if(line[i] >= max)
             max = line[i];
@@ -18,6 +18,7 @@ public class arrivalOfTheGeneral {
             if(line[i] <= min)
             min = line[i];
         }
+        
         int pMin = 0, pMax = 0;
         for(int i=0, j=n-1 ; i<n ; i++, j--){
             if(line[i] == min)

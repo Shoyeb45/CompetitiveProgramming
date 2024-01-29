@@ -10,20 +10,25 @@ public class ld {
         int n =sc.nextInt();
         int[] isPrime = new int[n+1];
 
-        for(int i=1; i<=n ; i++){
+        for(int i=2; i<=n ; i++){
             isPrime[i] = i;
         }
 
         for(int i=2; i<=n ; i++){
-            if(isPrime[i] == i){
-                for(int j=2*i ; j<=n ; j=j+i){
+            if(isPrime[i] == i && (long)i*i<=n){
+                for(int j=i*i ; j<=n ; j=j+i){
                    if(isPrime[j] == j){
-                        isPrime[i] = i;                    
+                        isPrime[j] = i;                    
                    } 
                 }
             }
-            sc.close();
+
+           
         }
+        for(int i=2 ; i<n+1 ; i++){
+            System.out.print(isPrime[i]+" ");
+        }
+        sc.close();
     }
     
 }

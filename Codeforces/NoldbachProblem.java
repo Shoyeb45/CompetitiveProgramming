@@ -45,7 +45,7 @@ public class NoldbachProblem {
         else
         System.out.println("NO");
 
-
+        sc.close();
     }
     
 }

@@ -27,5 +27,6 @@ public class primeFactorization {
             System.out.print(leastDivisor[i]+"*");
             i /= leastDivisor[i]; 
         }
+        sc.close();
     }
 }

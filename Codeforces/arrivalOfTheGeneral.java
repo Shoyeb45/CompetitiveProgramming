@@ -32,5 +32,6 @@ public class arrivalOfTheGeneral {
         }else{
             System.out.println((pMax-0)+(n-1-pMin));
         }
+        sc.close();
     }
 }

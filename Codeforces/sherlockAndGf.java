@@ -29,7 +29,7 @@ public class sherlockAndGf {
             else
             System.out.print(2+" ");
         }
-
+        sc.close();
         
 
     }

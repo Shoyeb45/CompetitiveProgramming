@@ -45,24 +45,33 @@ public class collider {
                 if(check)
                 break;
             }
+
             if(check){
             if(sign == '+'){
 
                 if(isOn[a]){
                 System.out.println("Already on");
-                break;
+                continue;
             }
 
+            int chk =0;
                 for(int j=1; j<=n ; j++){
                     if(isOn[j]){
-                        if(isRelaPrime(a, j) == false){
+                        if(a != j){
+                        if(isRelaPrime(a, j) == false ){
                             System.out.println("Conflict with "+j);
+                            chk = 0;
                             break;
                         }else{
-                            isOn[a] = true;
-                            System.out.println("Success");
+                            chk = 1;
                         }
+                        
                     }
+                    }
+                }
+                if(chk == 1){
+                    isOn[a] = true;
+                    System.out.println("Success");
                 }
 
             }if(sign == '-'){
@@ -74,8 +83,13 @@ public class collider {
             }
             }
         }else{
-            isOn[a] = true;
+            if(sign == '+'){
+                isOn[a] = true;
                 System.out.println("Success");
+            }else{
+                System.out.println("Already off");
+            }
+            
         }
             }
             

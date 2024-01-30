@@ -22,6 +22,7 @@ public class collider {
             for(int i=1; i<=n ; i++){
             isOn[i] = false;
             }
+
             char sign1 = sc.next().charAt(0);
             int a1 = sc.nextInt();
 
@@ -47,13 +48,16 @@ public class collider {
             if(check){
             if(sign == '+'){
 
-                if(isOn[a])
+                if(isOn[a]){
                 System.out.println("Already on");
+                break;
+            }
 
                 for(int j=1; j<=n ; j++){
                     if(isOn[j]){
                         if(isRelaPrime(a, j) == false){
                             System.out.println("Conflict with "+j);
+                            break;
                         }else{
                             isOn[a] = true;
                             System.out.println("Success");
@@ -78,8 +82,3 @@ public class collider {
             sc.close(); 
             }
         }
-        
-        
-
-    
-

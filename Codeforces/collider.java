@@ -19,15 +19,16 @@ public class collider {
         int m = sc.nextInt();
 
         int[] reqNum = new int[m];
-        
-        for(int i=0; i<m ; i++){
-            String temp = sc.nextLine();
-            
-            // if(temp.charAt(0) == '+'){
-            //     reqNum[i] = temp.charAt(2);
-            // }else{
-            //     reqNum[i] = -temp.charAt(2);
-            // }
+        boolean[] 
+        for(int i=0; i<=m ; i++){
+            char sign = sc.nextLine().charAt(1);
+            int a = sc.nextInt();
+
+            if(sign == '+'){
+                if()
+            }else{
+
+            }
             
         }
         for(int i =0; i<m ; i++){

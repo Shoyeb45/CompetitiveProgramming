@@ -13,28 +13,27 @@ public class collider {
         else
         return false;
     }
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
+        public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            int n = sc.nextInt();
+            int m = sc.nextInt();
 
-        int[] reqNum = new int[m];
-        boolean[] 
-        for(int i=0; i<=m ; i++){
-            char sign = sc.nextLine().charAt(1);
+            boolean[] isOn = new boolean[m+1];
+            for(int i=1; i<=m ; i++){
+            isOn[i] = false;
+            }
+
+            for(int i=1; i<m+1 ; i++){
+            char sign = sc.next().charAt(0);
             int a = sc.nextInt();
-
-            if(sign == '+'){
-                if()
-            }else{
-
+            
             }
             
+            sc.close(); 
+            }
         }
-        for(int i =0; i<m ; i++){
-            System.out.println(reqNum[i]);
-        }
-        sc.close();
+        
+        
 
-    }
-}
+    
+

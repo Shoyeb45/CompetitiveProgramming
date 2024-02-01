@@ -10,6 +10,7 @@ public class Sieve {
         for(int i=0; (long)i<n+1 ;i++){
             isPrime[i] = true;
         }
+        
         isPrime[0] = false; isPrime[1]= false;
         for(int i=2 ; (long)i*i<=n ; i++){
             if(isPrime[i] ){
@@ -19,7 +20,7 @@ public class Sieve {
             }
         }
 
-        for(int i=2 ; i<n ; i++){
+        for(int i=2 ; i<=n ; i++){
             if(isPrime[i] == true)
             System.out.print(i+" ");
         }

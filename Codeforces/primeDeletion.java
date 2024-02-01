@@ -9,15 +9,15 @@ public class primeDeletion {
         for(int i=1; i<=n ; i++){
             String seq = sc.next();
             for(int j=0 ; j<9; j++){
-            if(seq.charAt(j) == '3')
+            if(seq.charAt(j) == '7') //you can take 3 also 
             ind3 = j;
             if(seq.charAt(j) == '1')
             ind1 = j;
         }
         if(ind1 < ind3)
-        System.out.println("13");
+        System.out.println("17");
         else
-        System.out.println("31");
+        System.out.println("71");
         }
 
         

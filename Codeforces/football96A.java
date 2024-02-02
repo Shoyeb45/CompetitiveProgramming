@@ -29,8 +29,10 @@ public class football96A {
                 }
             }
 
-            if(count1 >= 7 || count2 >=7)
+            if(count1 >= 7 || count2 >=7){
             ans = true;
+            break;
+        }
             else
             ans = false;
         

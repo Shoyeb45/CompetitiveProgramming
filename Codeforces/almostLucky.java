@@ -30,7 +30,7 @@ public class almostLucky {
                 
                     if((digit == 2) && (n % 47 == 0 || n % 74 == 0)){
                         System.out.println("YES");
-                    }else if ((digit == 3) && (n % 744 == 0 || n % 774 == 0 || n % 447 == 0 || n % 477 == 0 || n % 747 == 0 || n % 474 == 0)) {
+                    }else if ((digit == 3) && (n % 744 == 0 || n % 774 == 0 || n % 447 == 0 || n % 477 == 0 || n % 747 == 0 || n % 474 == 0 || n % 47 == 0 || n % 74 == 0)) {
                         System.out.println("YES");
                     }else{
                         System.out.println("NO");

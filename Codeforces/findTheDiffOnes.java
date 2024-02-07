@@ -31,6 +31,8 @@ public class findTheDiffOnes {
 
         }
 
+        sc.close();
+
     }
     
 }

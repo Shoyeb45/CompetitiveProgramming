@@ -16,6 +16,8 @@ public class goneBananas {
                 System.out.println("Yes");
             }
         }
+
+        sc.close();
     }
     
 }

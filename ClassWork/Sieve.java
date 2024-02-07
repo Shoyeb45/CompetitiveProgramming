@@ -1,4 +1,4 @@
-package CompetitiveProgramming;
+package ClassWork;
 import java.util.*;
 
 public class Sieve {

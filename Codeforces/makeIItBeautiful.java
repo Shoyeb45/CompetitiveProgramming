@@ -74,6 +74,6 @@ public class makeIItBeautiful {
             }
             }
         }
-    }
-    
+    sc.close();
+    }   
 }

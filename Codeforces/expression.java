@@ -15,5 +15,7 @@ public class expression {
         ans[5] = a + (b + c);
         Arrays.sort(ans);
         System.out.println(ans[5]);
+
+        sc.close();
     }
 }

@@ -12,14 +12,18 @@ public class alternatingWorkDays {
             int q = sc.nextInt();
 
             boolean ans = false;
-            for(int i = 1, j = 1; i<=(2 * q)/a || j <= 2 * ((9/a) - 1); i++, j++) {
-                if (  ) {
+            for(int i = 1; i<=(2 * q)/a || i <= 2 * ((9/a) - 1); i += 2) {
+                if ( ((i/2 + 1) * a == p && (i+1)/2 * b == q) || ((i/2 + 1) * a == q && (i+1)/2 * b == p) ) {
                     ans = true;
                     break;
                 } else {
                     ans = false;
                 }
             }
+            if(ans)
+            System.out.println("YES");
+            else
+            System.out.println("NO");
         }
 
         sc.close();

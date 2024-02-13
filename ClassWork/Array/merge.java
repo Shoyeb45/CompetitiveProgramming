@@ -4,7 +4,7 @@ package ClassWork.Array;
 
 import java.util.Scanner;
 
-public class practice2 {
+public class merge {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
@@ -44,12 +44,9 @@ public class practice2 {
             j++;
         }
         }
-
-        
-        
         for(int i= 0; i<=n+m-1; i++){
             System.out.print(c[i]+" ");
         }
-    }
-    
+        sc.close();
+    } 
 }

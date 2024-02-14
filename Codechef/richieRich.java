@@ -23,6 +23,6 @@ public class richieRich {
 
             System.out.println(ans);
         }
-    }
-    
+        sc.close();
+    }   
 }

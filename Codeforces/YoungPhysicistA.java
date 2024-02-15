@@ -27,6 +27,8 @@ public class YoungPhysicistA {
             System.out.println("NO");
         }
 
+       
+        
         input.close();
     }
     

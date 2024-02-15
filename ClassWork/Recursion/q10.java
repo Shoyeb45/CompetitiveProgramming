@@ -6,7 +6,7 @@ public class q10 {
     public static int strlen(String s){
         char[] a = s.toCharArray();
         int len = 0;
-        for(char c : a){
+        for(@SuppressWarnings("unused") char c : a){
             len++;
         }
         return len;

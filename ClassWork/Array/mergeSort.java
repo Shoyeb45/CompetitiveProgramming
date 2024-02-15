@@ -45,7 +45,7 @@ public class mergeSort {
         for(int i=0; i<c.length; i++)
         System.out.print(c[i]+" ");
         
-    
+        sc.close();
 
 
     }

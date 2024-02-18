@@ -1,14 +1,16 @@
+// finding square root of element
+
 package ClassWork;
 
-public class ques4 {
-    public static int sqrt(int n) {
-        int low = 1;
-        int high = n;
-        int ans = -1;
+public class quesSqrt4 {
+    public static long sqrt(int n) {
+       long low = 1;
+       long high = n;
+       long ans = -1;
 
         while (low <= high) {
-            int mid = (low + high)/2;
-            if(mid * mid <= n) {
+            long mid = (low + high)/2;
+            if((long) (mid * mid) <= n) {
                 ans = mid;
                 low = mid + 1;
             } else {
@@ -18,7 +20,7 @@ public class ques4 {
         return ans;
     }
     public static void main(String[] args) {
-        int n = 625;
+        int n = 2113976484;
         System.out.println(sqrt(n));   
     }
 }

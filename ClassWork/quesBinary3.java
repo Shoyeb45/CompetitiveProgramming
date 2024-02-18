@@ -1,3 +1,5 @@
+// finding element in array such that a[i] = i
+
 package ClassWork;
 
 import java.util.Scanner;

@@ -1,3 +1,5 @@
+// returning the value of index where b can be placed in sorted array a
+
 package ClassWork;
 
 import java.util.Scanner;
@@ -23,9 +25,10 @@ public class questionBinary {
     int n = sc.nextInt();
     int[] a = new int[n];
     for(int i=0; i<=n-1; i++)   a[i] = sc.nextInt();
+    int target = sc.nextInt();
 
     
-    int ans = Search(a, n, 6);
+    int ans = Search(a, n, target);
     System.out.println(ans);
     sc.close();   
     }

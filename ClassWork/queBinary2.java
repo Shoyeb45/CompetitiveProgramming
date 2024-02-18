@@ -1,3 +1,5 @@
+// returning the index of element where there are two duplicate elements elements in array, array is sorted and contains element from 1 to n-1 and one duplicate element
+
 package ClassWork;
 
 import java.util.Scanner;

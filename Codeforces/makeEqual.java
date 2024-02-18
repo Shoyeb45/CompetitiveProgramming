@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class makeEqual {
@@ -11,16 +10,20 @@ public class makeEqual {
             int[] water = new int[n];
 
             for(int j=0; j<n; j++)  water[j] = sc.nextInt();
-
-        if(n != 1) {    
-            int[] sorted = new int[n];
-            Arrays.sort(sorted);
-            int median = 0;
-            if(n % 2 != 0) median = sorted[n/2];
-            else           median = (sorted[n/2] + sorted[n/2 - 1])/2 ;
             
-        }
-            
+            int amt = 0;
+            for(int j=0; j<n; j++)  amt += water[j];
+            amt /= n;
+            boolean ans1 = false;
+            boolean ans2 = false;
+            for(int i=0; i<n; i++) {
+                if(water[i] >= amt) ans1 = true;
+            }
+            for(int i=(n/2)+1; i<n; i++) {
+                if(water[i] <= amt) ans2 = true;
+            }
+            if(ans1 && ans2) System.out.println("Yes");
+            else    System.out.println("No");
         }
         sc.close();
     }

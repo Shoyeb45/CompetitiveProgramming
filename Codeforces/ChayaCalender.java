@@ -20,8 +20,7 @@ public class ChayaCalender {
                     break;
                 }
             }
-            System.out.println(ans);
-            
+            System.out.println(ans);   
         }
     }
 }

@@ -22,7 +22,7 @@ public class doors {
             if(door[i]) {
                 System.out.println("Door " + i + " is open."); 
             } else {
-                System.out.println("Door "+i+ " is closed.");
+                System.out.println("Door " + i + " is closed.");
             }
         }
         sc.close();

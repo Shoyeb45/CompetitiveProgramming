@@ -7,12 +7,12 @@ using namespace std;
 int main() {
     int n;
     cin >> n;
-    vector<int> v(n);
-    vector<int> prefixSum(n);
+    vector<int> v;
+    vector<int> prefixSum;
     int a;
     cin >> a;
     v.push_back(a);
-    v.push_back(v[0]);
+    prefixSum.push_back(v[0]);
 
     for(int i=1; i<n; i++) {
         int temp;
@@ -24,6 +24,7 @@ int main() {
     for (int i=0; i<n; i++) {
         cout << prefixSum[i] <<" " ;
     }
+    cout << "\n";
     for (int i=0; i<n; i++) {
         cout << v[i] <<" " ;
     }

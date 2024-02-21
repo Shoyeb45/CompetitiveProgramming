@@ -23,40 +23,20 @@ public class bitonicArray {
         }
         return ans;
     }
-    // public static int BitonicPoint(int[] a) {
-    //     int lower = 0;
-    //     int upper = a.length - 1;
     
-    //     while (lower <= upper) {
-    //         int mid = lower + (upper - lower) / 2;
-    
-    //         if (mid > 0 && mid < a.length - 1) {
-    //             if (a[mid] > a[mid - 1] && a[mid] > a[mid + 1]) {
-    //                 return mid;
-    //             } else if (a[mid - 1] > a[mid]) {
-    //                 upper = mid - 1;
-    //             } else {
-    //                 lower = mid + 1;
-    //             }
-    //         } else {
-    //             return -1; // Array is not bitonic
-    //         }
-    //     }
-    //     return -1; // Should never reach here
-    // }
     
     public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-    int n = sc.nextInt();
-    int[] arr = new int[n];
-    
-    for (int i=0; i<n; i++) {
-        arr[i] = sc.nextInt();
-    }
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        
+        for (int i=0; i<n; i++) {
+            arr[i] = sc.nextInt();
+        }
 
-    System.out.println(BitonicPoint(arr));
-    sc.close();
+        System.out.println("Index of bitonic array is "+BitonicPoint(arr) + "\nAnd Element is " + arr[BitonicPoint(arr)]);
+        sc.close();
     
     }
 }

@@ -4,7 +4,7 @@ package ClassWork;
 
 import java.util.Scanner;
 
-public class questionBinary {
+public class quesBinary1 {
     public static int Search(int[] a, int l, int target) {
         int low = 0;
         int high = l-1;

@@ -4,7 +4,7 @@ package ClassWork;
 
 import java.util.Scanner;
 
-public class bitonicArray {
+public class bitonicArray1 {
     public static int BitonicPoint(int[] a) {
         int lower = 1;
         int upper = a.length - 2;

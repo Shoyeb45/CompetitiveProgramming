@@ -4,7 +4,7 @@ package ClassWork;
 import java.util.*;
 
 public class rotatedSortArray {
-    public static int mimInRotated(int[] a) {
+    public static int minInRotated(int[] a) {
         int lower = 0;
         int upper = a.length - 1;
         int ans = 0;
@@ -28,7 +28,7 @@ public class rotatedSortArray {
 
         for(int i=0; i<n; i++)  arr[i] = sc.nextInt();
 
-        int min = mimInRotated(arr);
+        int min = minInRotated(arr);
         System.out.println("Index of minimum element in rotated array is "+min+".");
         sc.close();
     }

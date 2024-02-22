@@ -8,11 +8,11 @@ public class rotatedSortedArray2 {
     public static int minInRotated(int[] a) {
         int lower = 0;
         int upper = a.length - 1;
-        int ans = 0;
+        int ans = a.length ;
         while (lower <= upper) {
             int mid = (lower + upper)/2;
-            if(a[mid] > a[mid+1]) {   
-                ans = mid;
+            if(mid < a.length-1 && a[mid] > a[mid+1]) {   
+                ans = mid+1;
                 break;
             } else if (a[mid] < a[0]) {  
                 upper = mid - 1;
@@ -20,7 +20,7 @@ public class rotatedSortedArray2 {
                 lower = mid + 1;
             }
         }
-        return ans+1;
+        return ans;
     }
 
     public static int binarySearch(int[] a, int x, int start, int end) {

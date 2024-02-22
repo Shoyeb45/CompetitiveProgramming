@@ -14,12 +14,6 @@ int main() {
         cin >> temp;
         p.push_back(temp);
     }
-
-
-    while (low <= high)
-    {
-        if(isSubsequ(s, t));
-    }
     
 
 

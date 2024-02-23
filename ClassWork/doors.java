@@ -12,7 +12,7 @@ public class doors {
         for(int i=1; i<=n; i++) door[i] = false;
         
         for (int i=1; i<=n; i++) {
-            for(int j=1; j<=n; j += i) {
+            for(int j=i; j<=n; j += i) {
                 if(door[j])    door[j] = false;
                 else    door[j] = true;
             }

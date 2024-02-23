@@ -7,7 +7,7 @@ public class quesBinary5 {
     public static int upperBound(int[] a, int x) {
         int lower = 0;
         int upper = a.length - 1;
-        int UB = a.length;
+        int UB = 0;
         while (lower <= upper) {
             int mid = (lower + upper)/2;
             if(a[mid] > x) {

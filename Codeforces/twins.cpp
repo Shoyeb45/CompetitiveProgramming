@@ -7,5 +7,10 @@ int main() {
     int a[n];
     for(int i=0 ; i<n; i++)   cin >> a[i];
     sort(a, a+n);
+    int min = 0, max = 0;
+
+    for(int i=0; i<n; i++) {
+        
+    }
     return 0;
 }

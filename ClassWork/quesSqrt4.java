@@ -20,7 +20,7 @@ public class quesSqrt4 {
         return ans;
     }
     public static void main(String[] args) {
-        int n = 2113976484;
+        int n = 5;
         System.out.println(sqrt(n));   
     }
 }

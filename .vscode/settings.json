@@ -10,6 +10,8 @@
         "stacktrace": "cpp",
         "regex": "cpp",
         "valarray": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "cmath": "cpp",
+        "complex": "cpp"
     }
 }

@@ -1,48 +1,54 @@
-// given two string one is original and one is subsequence , and one array where you have position of elements, return the minimum number of the characters you can delete from the original string according to order of the permutation, such that subsequence is not preserved.
-
-
 #include<bits/stdc++.h>
 using namespace std;
 
-bool isSubsequ(string o, string ss) {
-    int i=0, j=0;
+// function for checking that the subaarray is still sub array or not after removing the mid elements
+bool isSubs(string orgStr, string subStr, vector<int> &index, int mid) {
+    string oS = orgStr;
+    for(int i=0; i<mid; i++)    oS[index[i]] = '#';
 
-    while(i < o.size() && j < ss.size()) {
-        if(o[i] == ss[j]) {
+    int i = 0, j = 0;
+    while (i < oS.size() && j < subStr.size()) {
+        if(oS[i] == subStr[j]) {
             i++;
             j++;
         } else {
             i++;
         }
     }
-
-    if(j == ss.size()) {
+    
+    if(j == subStr.size()) {
         return true;
-    } 
+    }
 
     return false;
 }
 
-int main() {
-    string s, t;
-    cin >> s >> t;
-    vector<int> p;
-    int n;
-    cin >> n;
-    for(int i=0; i<n; i++) {
-        int temp;
-        cin >> temp;
-        p.push_back(temp);
-    }
-    int n = s.size();
+int finalAns(string orgStr, string subStr, vector<int> &index) {
+    int n = orgStr.size();
     int low = 0;
     int high = n;
-
+    int ans = -1;
     while (low <= high)
     {
-        if(isSubsequ(s, t));
+        int mid = (low + high)/2;
+
+        if(isSubs(orgStr, subStr, index, mid)) {
+            ans = mid;
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
     }
-    
+    return ans;
+}
 
+int main() {
+    string orgStr, subStr;
+    cin >> orgStr >> subStr;
+    int n;
+    cin >> n;
+    vector<int> index(n);
+    for(int i=0; i<n; i++)  cin >> index[i];
 
+    cout << finalAns(orgStr, subStr, index)+1;
 }

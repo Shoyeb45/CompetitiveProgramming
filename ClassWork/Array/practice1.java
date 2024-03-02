@@ -1,6 +1,6 @@
 // inserting one element in sorted array
 
-package ClassWork.Array;
+package Array;
 
 import java.util.Scanner;
 

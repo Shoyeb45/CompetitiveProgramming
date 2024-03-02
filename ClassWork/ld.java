@@ -1,6 +1,6 @@
 // Least Divisor
 
-package ClassWork;
+
 
 import java.util.Scanner;
 

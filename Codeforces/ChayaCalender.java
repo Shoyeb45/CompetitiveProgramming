@@ -22,5 +22,6 @@ public class ChayaCalender {
             }
             System.out.println(ans);   
         }
+        sc.close();
     }
 }

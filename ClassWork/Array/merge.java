@@ -1,6 +1,6 @@
 // Merging two sorted array
 
-package ClassWork.Array;
+package Array;
 
 import java.util.Scanner;
 

@@ -1,5 +1,3 @@
-package ClassWork;
-
 import java.util.Scanner;
 
 public class doors {

@@ -1,5 +1,5 @@
 #include<bits/stdc++.h>
-
+// sets practice question - Andryusha and socks
 using namespace std;
 
 
@@ -13,8 +13,8 @@ int main() {
         int x;
         cin >> x;
 
+        s.insert(x);
         if(s.find(x) == s.end()) {
-            s.insert(x);
         } else {
             s.erase(s.find(x));
         }

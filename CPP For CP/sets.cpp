@@ -4,8 +4,12 @@ using namespace std;
 
 
 int main() {
-    int n;
-    cin >> n ;
     set<int> s = {1, 1, 3, 2, 3};
-    cout << *s.begin();
+    int it = *s.find(2);
+    cout << s.size() << '\n';
+    cout << it << '\n';
+    int begin = *s.begin();
+    // iterating through sets
+    for(auto it = s.begin(); it != s.end(); it++) cout << *it << '\n';
+    cout << *s.rend();
 }

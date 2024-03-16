@@ -34,6 +34,7 @@ int main() {
         else if(isAsce(a) && k != 1)    cout << "YES\n";
         else if ( k == 1 )   cout << "NO\n";
         else    cout << "YES\n";
+        
     }
     
 }

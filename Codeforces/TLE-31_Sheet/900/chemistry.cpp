@@ -11,11 +11,24 @@ int main() {
         cin >> n >> k;
         string s;
         cin >> s;
+        sort(s.begin(), s.end());
 
-        if(n- k == 1)   cout << "YES\n"
-        else {
+            int i = 0, odd = 0;
+            while (i < s.size()) {
+                int cnt = 1;
+                int j = i + 1;
+                while (j < s.size() && s[i] == s[j]) {
+                    cnt++;
+                    j++;
+                }
+                
+                odd += (cnt % 2 != 0);
+                i = j;
+            }
+
+        if(k < odd - 1) cout << "NO\n";
+        else    cout << "YES\n";
             
-        }
     }
     
 }

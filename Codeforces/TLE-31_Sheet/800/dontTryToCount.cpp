@@ -1,25 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-bool isSubstring(string x, string s) {
-    int j = 0;
-    bool ans = true;
-    for(int i = 0 ; i < x.size(); i++) {
-        ans = true;
-        while(j < s.size()) {
-            if(s[i] == x[i]) {
-                ans = true;
-            } else {
-                ans = false;
-                break;
-            }
-            j++;
-        }
-
-        j = 0;
-        if(ans) break;
-    }
-    return ans;
+bool isSubstring(string s1, string s2) {
+    size_t found = s1.find(s2);
+    return (found != string::npos);
 }
 
 int main () {
@@ -33,6 +17,21 @@ int main () {
         string x, s;
         cin >> x; 
         cin >> s;    
-        cout << isSubstring(x, s);
+        if(isSubstring(x, s))   cout << 0 << "\n";
+        else {
+            for(int i = 1 ; ; i++) {
+                x = x + x;
+                if(isSubstring(x, s)) {  
+                    cout << i << "\n";
+                    break;
+                }
+                else {
+                    if(x.size() > 2 * s.size()){
+                        cout << -1 << "\n";
+                        break;
+                    }
+                }
+            }   
+        }
     }
 }

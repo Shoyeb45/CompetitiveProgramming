@@ -16,7 +16,7 @@ int main () {
         cin >> n >> m;
         string x, s;
         cin >> x; 
-        cin >> s;    
+        cin >> s;
         if(isSubstring(x, s))   cout << 0 << "\n";
         else {
             for(int i = 1 ; ; i++) {

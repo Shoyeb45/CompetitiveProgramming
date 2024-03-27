@@ -18,7 +18,7 @@ int main() {
         while (true)
         {
             if(c > 1) {
-                seconds += (c - 1);
+                seconds += (c - 2);
                 c = 1;
             } else if(c == 1) {
                 c = min(c + x[i], a);
@@ -30,8 +30,8 @@ int main() {
                 break;
             }
 
-            if(i == n - 1) {
-                seconds += (c);
+            if(i == n ) {
+                seconds += (c+1);
                 break;
             }
         }

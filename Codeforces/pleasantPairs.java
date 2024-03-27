@@ -5,9 +5,9 @@ public class pleasantPairs {
         Scanner sc = new Scanner(System.in);
         int t = sc.nextInt();
 
-        int[] answer = { 0, 0, 0 };
-
+        
         for (int i = 0; i < t; i++) {
+            int count = 0;
             int n = sc.nextInt();
 
             int[] arr = new int[n];
@@ -19,16 +19,14 @@ public class pleasantPairs {
                 for (int j = k + 1; j < n; j++) {
 
                     if (k < j && (long) arr[k] * arr[j] == (long) k + j + 2) {
-                        answer[i] += 1;
+                        count += 1;
                     }
                 }
             }
+            System.out.println(count);
         }
 
-        for (int i = 0; i < 3; i++) {
-            System.out.println(answer[i]);
-        }
-
+        
         sc.close();
     }
 }

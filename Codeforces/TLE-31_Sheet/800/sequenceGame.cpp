@@ -27,7 +27,20 @@ int main() {
             for(int i = 0; i < n ; i++) cout << b[i] << " ";
             cout << "\n";
         } else {
-            
+            vector<ll> a;
+            a.push_back(b[0]);
+            for(int i = 1; i < n; i++) {
+                if(b[i] >= b[i-1])  a.push_back(b[i]);
+                else {
+                    if(b[i-1] - b[i] <= b[i])   a.push_back(b[i-1] - b[i]);
+                    else    a.push_back(b[i]);
+                    a.push_back(b[i]);
+                }
+            }
+
+            cout << a.size() << "\n";
+            for(int i = 0 ; i < a.size(); i++)  cout << a[i] << " ";
+            cout << "\n";
         }
     }
 }

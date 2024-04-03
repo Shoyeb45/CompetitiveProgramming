@@ -15,7 +15,12 @@ int main() {
         
         if(n <= 10) cout << n << endl;
         else {
-            cout << 10 + (n - 10)/10  << "\n";
+            int digits = (int)(log10(n)) + 1;
+            int  mult = 10;
+            loop(i, digits - 2) mult *= 10; 
+
+            int x = n/mult;
+            cout << 9*(digits - 1) + x  << "\n";
         }
     }
     

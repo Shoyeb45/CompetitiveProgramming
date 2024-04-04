@@ -9,7 +9,8 @@ public class SashaAndTheDrawing {
             int n = sc.nextInt();
             int k = sc.nextInt();
             int sum = 0, color = 0;
-            for(int i=1; ; i++) {
+            for(@SuppressWarnings("unused")
+            int i=1; ; i++) {
                 if(sum >= k)    break;
                 if(color < 2 * (n - 1)) {
                     sum += 2;

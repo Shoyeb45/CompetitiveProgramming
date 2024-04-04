@@ -1,4 +1,4 @@
-package Codechef;
+// package Codechef;
 
 import java.util.Scanner;
 

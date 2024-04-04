@@ -1,4 +1,4 @@
-package Codechef;
+// package Codechef;
 import java.util.*;
 public class alternatingWorkDays {
     public static void main(String[] args) {

@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
+#define loop(i, n) for(int i = 0; i < n; i++)
 
 bool isAllEqual(vector<ll> &a) {
     bool ans = true;
@@ -26,50 +27,18 @@ int main() {
         
         if(isAllEqual(a))   cout << -1 << "\n";
         else {
-        vector<ll> b;
-        vector<ll> c;
             sort(a.begin(), a.end());
+            
+            ll ind = 0;
+            while(a[ind] == a[0])   ind++;
 
-            if(n % 2 == 1) {
-                for(int i = 0 , j = n - 1; i < (n / 2); i++, j--) {
-                    if(a[i] % a[j] == 0) {   
-                        b.push_back(a[j]);
-                        b.push_back(a[i]);
-                    } else {
-                        b.push_back(a[i]);
-                        c.push_back(a[j]);
-                    }
-                }
-                bool check = true;
-                for(int i = 0 ; i < b.size(); i++) {
-                    if(b[i] % a[n/2] != 0)  check = check && true;
-                    else {
-                        check = false;
-                        b.push_back(a[n/2]);
-                        break;
-                    }
-                }
-                if(check)   c.push_back(a[n/2]);
-            } else {
-                for(int i = 0 , j = n - 1; i < n - 1 ; i++, j--) {
-                    if(a[i] % a[j] == 0) {   
-                        b.push_back(a[j]);
-                        b.push_back(a[i]);
-                    } else {
-                        b.push_back(a[i]);
-                        c.push_back(a[j]);
-                    }
-                }
-               
-            }
+            cout << ind << " " << n - ind << "\n";
 
-            cout << b.size() << " " ;
-            cout << c.size() << "\n";
-            for(int i = 0 ; i < b.size(); i++)  cout << b[i] << " ";
+            loop(i, ind) cout << a[i] << " ";
             cout << "\n";
-            for(int i = 0 ; i < c.size(); i++)  cout << c[i] << " ";
-            cout << "\n";
-        }
+            for(int i = ind; i < n; i++)    cout << a[i] << " ";
+            cout << endl;
     }
     
+}
 }

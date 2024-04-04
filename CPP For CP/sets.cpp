@@ -10,6 +10,7 @@ int main() {
     cout << it << '\n';
     int begin = *s.begin();
     // iterating through sets
+    s.insert(9);
     for(auto it = s.begin(); it != s.end(); it++) cout << *it << '\n';
     cout << *s.rend();
 }

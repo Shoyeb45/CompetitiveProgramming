@@ -15,5 +15,9 @@
         "complex": "cpp",
         "string": "cpp",
         "format": "cpp"
-    }
+    },
+    "java.project.sourcePaths": [
+        "Codeforces",
+        "Codechef"
+    ]
 }

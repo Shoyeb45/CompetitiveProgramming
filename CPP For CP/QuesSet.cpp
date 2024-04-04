@@ -9,14 +9,14 @@ int main() {
     int ans = -1;
     set<int> s;
 
-    for(int i=0; i<n; i++) {
+    for(int i = 0; i < 2 * n; i++) {
         int x;
         cin >> x;
 
         s.insert(x);
         if(s.find(x) == s.end()) {
         } else {
-            s.erase(s.find(x));
+            if(s.size() > 1)    s.erase(s.find(x));
         }
 
         if(s.size() > ans) {

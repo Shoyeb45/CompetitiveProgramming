@@ -6,9 +6,9 @@ public class SashaAndTheCasino {
         int t = sc.nextInt();
         
         for(int p=1; p<=t; p++) {
-            int k = sc.nextInt();
-            int x = sc.nextInt();
-            int a = sc.nextInt();
+            // int k = sc.nextInt();
+            // int x = sc.nextInt();
+            // int a = sc.nextInt();
            
         }
         sc.close();

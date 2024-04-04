@@ -13,6 +13,11 @@ int main() {
         int n, a, b;
         cin >> n >> a >> b;
         
+        if(n == a && n == b)    cout << "YES\n";
+        else   { 
+            if( a + b <= n - 2) cout << "YES\n";
+            else    cout << "NO\n";
+        }
         
     }
     

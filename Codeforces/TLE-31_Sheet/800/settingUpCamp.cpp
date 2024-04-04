@@ -23,8 +23,13 @@ int main() {
                 tent++;
                 c = c - 1;
             } 
-
-            tent = c/3 + (c % 3);
+            
+            if(c <= 3 && c > 0)  tent++;
+            else if(c > 0) {
+                tent += (c/3);
+                if(c % 3 != 0)  tent++;
+            }
+            
 
             cout << tent << "\n";
         }

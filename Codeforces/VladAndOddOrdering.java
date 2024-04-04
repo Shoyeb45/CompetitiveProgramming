@@ -6,8 +6,8 @@ public class VladAndOddOrdering {
         int t = sc.nextInt();
         
         for(int p=1; p<=t; p++) {
-            int n = sc.nextInt();
-            int k = sc.nextInt();
+            // int n = sc.nextInt();
+            // int k = sc.nextInt();
             
         }
         sc.close();

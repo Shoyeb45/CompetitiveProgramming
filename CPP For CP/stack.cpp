@@ -24,7 +24,7 @@ int main () {
 
     // Empty - true iff stack is empty
     if(s.empty())   cout << "Stack is empty.\n";
-
+    cout << s.top();
     s.push(43);
     s.push(12);
     s.push(12424);

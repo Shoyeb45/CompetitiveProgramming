@@ -4,6 +4,7 @@ using namespace std;
 
 
 int main() {
+    
     set<int> s = {1, 1, 3, 2, 3};
     int it = *s.find(2);
     cout << s.size() << '\n';

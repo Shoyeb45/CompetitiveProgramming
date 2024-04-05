@@ -2,16 +2,19 @@
 using namespace std;
 
 int main(){
-    string seq;
-    cin >> seq;
+    string s;
+    cin >> s;
     stack<char> st;
-    for (int i = 0 ; i < seq.size(); i++) {
-        // opening bracket
-        if(seq[i] == '{' || seq[i] == '[' || seq[i] == '(' ) {
-            st.push(seq[i]);
-        } else {
-            if(st.top() == '}')
+     for(int i = 0; i < s.size(); i++) {
+            if(s[i] == '(' || s[i] == '{' || s[i] == '[') {
+                st.push(s[i]);
+            } else {
+                if(st.top() == '(' && s[i] == ')')   st.pop();
+                else if(st.top() == '[' && s[i] == ']') st.pop();
+                else if(st.top() == '{' && s[i] == '}') st.pop();
+            }
         }
-    }
+        
+    cout << st.empty();    
     return 0;
 }

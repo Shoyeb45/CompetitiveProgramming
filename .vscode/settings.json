@@ -14,7 +14,8 @@
         "cmath": "cpp",
         "complex": "cpp",
         "string": "cpp",
-        "format": "cpp"
+        "format": "cpp",
+        "ostream": "cpp"
     },
     "java.project.sourcePaths": [
         "Codeforces",

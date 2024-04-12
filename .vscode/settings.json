@@ -15,7 +15,10 @@
         "complex": "cpp",
         "string": "cpp",
         "format": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "deque": "cpp",
+        "vector": "cpp",
+        "numeric": "cpp"
     },
     "java.project.sourcePaths": [
         "Codeforces",

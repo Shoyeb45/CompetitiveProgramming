@@ -12,21 +12,28 @@ int main() {
         int n, q;
         cin >> n >> q;
 
-        vector<int> a(n);
-        ll sum = 0;
+        vector<ll> a(n);
+        vector<ll>  pS;
+
         loop(i, n) { 
             cin >> a[i];
-            sum += a[i];
         }
 
-        ll b = sum;
+        pS.push_back(a[0]);
+        for(int i = 1; i < n ; i++) {
+            pS.push_back(pS[i - 1] + a[i]);
+        }
+
         while(q--) {
-            sum = b;
             ll l, r, k;
             cin >> l >> r >> k;
-            for(int i = l - 1; i < r; i++) {
-                sum += (k - a[i]);
-            }
+            ll sumBtw = 0;
+            
+            if(l == 1)  sumBtw = pS[r - 1];
+            else    sumBtw = pS[r - 1] - pS[l - 2];
+
+            ll sum = (pS[n - 1] - sumBtw) + (r - l + 1) * k;
+            
             if((sum % 2) == 1)  cout << "YES\n";
             else    cout << "NO\n";
        }

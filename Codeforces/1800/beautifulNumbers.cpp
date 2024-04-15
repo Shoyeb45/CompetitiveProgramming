@@ -25,6 +25,6 @@ ll power(ll a, ll b, ll m) {
 int main() {
     ll a, b , n;
     cin >> a >> b >> n;
-
+    cout << power(a, b, mod);
     
 }

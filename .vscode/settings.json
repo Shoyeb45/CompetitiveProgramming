@@ -22,6 +22,8 @@
     },
     "java.project.sourcePaths": [
         "Codeforces",
-        "Codechef"
+        "Codechef",
+        "ClassWork/Recursion",
+        "ClassWork"
     ]
 }

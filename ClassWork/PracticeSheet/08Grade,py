@@ -1,0 +1,14 @@
+x = int(input())
+grade = ""
+if x <= 100 and  x >= 90:
+    grade = 'A'
+elif x < 90 and  x >= 70:
+    grade = 'B'
+elif x < 70 and  x >= 40:
+    grade = 'C'
+elif x < 40 and x >= 30:
+    grade = 'B'
+else:
+    grade = 'D'
+
+print(grade)

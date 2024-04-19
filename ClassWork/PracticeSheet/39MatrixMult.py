@@ -1,4 +1,4 @@
-import numpy
+import numpy as np
 
 def matrixMult(a, b):
     n, m = len(a), len(b)
@@ -7,7 +7,7 @@ def matrixMult(a, b):
     for i in range(n):
         for j in  range(m):
             for p in range(m):
-                c[i][j] = a[i][p] * b[p][j]
+                c[i][j] += (a[i][p] * b[p][j])
 
     return c
 n = int(input())
@@ -34,6 +34,9 @@ if m != x:
     print("Matrix multiplication is not possible")
 else:
     c = matrixMult(a, b)
+    a = np.array(a)
+    b = np.array(b)
+    print(a@b)
     print(c)
     
 

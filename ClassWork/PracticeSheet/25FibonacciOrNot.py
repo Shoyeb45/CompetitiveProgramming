@@ -1,6 +1,5 @@
 n = int(input())
 l = list(map(int, input().split()))
-
 if l[0] != 0 or l[1] != 1:
     print("Not Fiboncci sequence")
 else:

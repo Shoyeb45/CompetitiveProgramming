@@ -13,7 +13,7 @@ public class q6 {
         Scanner sc = new Scanner(System.in);
         int a = sc.nextInt();
         int b = sc.nextInt();
-        System.out.print("GCD("+a+","+b+")="+GCD(a, b));
+        System.out.print("GCD("+a+","+b+") = "+GCD(a, b));
         sc.close();
     }
     

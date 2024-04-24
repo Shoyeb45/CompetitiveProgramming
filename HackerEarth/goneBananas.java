@@ -1,5 +1,3 @@
-package HackerEarth;
-
 import java.util.*;
 
 public class goneBananas {

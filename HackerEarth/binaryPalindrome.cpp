@@ -11,8 +11,7 @@ string toBinary(ll n) {
 
     string ans = "";
     while(n != 0) {
-        int digit = n % 2;
-        ans += ('0' + digit);
+        ans += ('0' + n % 2);
         n /= 2;
     }
     return ans;
@@ -28,8 +27,7 @@ ll  toNum(string s) {
 }
 
 void calcPalindrome() {
-    ll range = (1 << 15);
-    for(ll n = 0; n <= range; n++) {
+    for(ll n = 0; n < (1 << 15); n++) {
         string first = toBinary(n);
         string last = first;
         reverse(last.begin(), last.end());
@@ -67,22 +65,23 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
+    calcPalindrome();
     int t;
     cin >> t;
-    calcPalindrome();
     while(t--) {
 		ll n;
 		cin >> n;
-        auto numIdx = palindromes.upper_bound(n);
-        ll ans = LONG_LONG_MAX;
+        auto numIdx = palindromes.lower_bound(n);
+        auto numId = numIdx--;
 
-        if(numIdx != palindromes.end())
-            ans = min(ans, (ll)abs(n - (*numIdx)));
+        ll ans = min(abs(n - (*numIdx)), abs(n - (*numId)));
+        // if(numIdx != palindromes.end())
+        //     ans = min(ans, (ll)(abs(n - (*numIdx))));
 
-        if(numIdx != palindromes.begin()){
-            numIdx--;
-            ans = min(ans, (ll)abs(n - (*numIdx)));
-        }
+        // if(numIdx != palindromes.begin()){
+        //     numIdx--;
+        //     ans = min(ans, (ll)(abs(n - (*numIdx))));
+        // }
 
         cout << ans << "\n";
     }

@@ -27,6 +27,11 @@ public:
         len = r.len;
         bre = r.bre;
     }
+
+    // Destructor - called when object is deleted after the end of the main program
+    ~Rectangle() {
+        cout << "I am destructor of the objects\n";
+    }
 };
 
 int main() {
@@ -41,9 +46,17 @@ int main() {
     Rectangle r2(4, 5);
     cout << r2.len << " " << r2.bre << '\n';
     
+    // Let's define the new object as pointer variable
+    Rectangle *r4 = new Rectangle();
+    cout << r4->bre << " " << r4->len << endl;
+    // Now let's delete it by delete keyword
+    delete r4;
+    
     // Making object by copy constructor
     Rectangle r3 = r2;
     cout << r3.len << " " << r3.bre << '\n';
+
+
     
     return 0;
 }

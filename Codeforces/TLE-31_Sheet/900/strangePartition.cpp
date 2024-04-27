@@ -14,7 +14,7 @@ int main() {
         int n, x;
         cin >> n >> x;
         ll min = 0;
-
+        
         vector<int> a(n);
         loop(i, n) {
             cin >> a[i];

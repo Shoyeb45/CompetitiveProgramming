@@ -42,7 +42,7 @@ int findMaxSum(int n, int m, vector<vector<int>> a) {
                 if(y - 3 < 0)
                     matSum = pS[x][y];
                 else if(x - 3 < 0)
-                    matSum = pS[x][y] - ps[x][y - 3];
+                    matSum = pS[x][y] - pS[x][y - 3];
                 else    
                     matSum = pS[x][y] - (pS[x][y - 3] + pS[x - 3][y]) + pS[x - 3][y - 3];
 
@@ -53,7 +53,7 @@ int findMaxSum(int n, int m, vector<vector<int>> a) {
         }
         ll ans = INT_MIN;
         for(int i = 0; i < hourGlassSum.size(); i++)
-            ans = max(ans, hourGlassSum[i]);
+            ans = max((int)ans, (int)hourGlassSum[i]);
 
         return ans;
 }

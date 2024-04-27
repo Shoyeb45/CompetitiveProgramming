@@ -28,5 +28,6 @@
         "GeeksForGeeks\\POTD",
         "HackerEarth"
     ],
-    "java.project.referencedLibraries": []
+    "java.project.referencedLibraries": [],
+    "C_Cpp.errorSquiggles": "disabled"
 }

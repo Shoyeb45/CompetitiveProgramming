@@ -16,14 +16,43 @@ public:
 
     
 };
+// Inserting value at end -  at tail
+void insertEnd(Node* &head, int val) {
+    Node* newHead = new Node(val);
+    Node* temp = head;
+    while(temp->next != NULL) {
+        temp = temp->next; 
+    }
+    temp->next = newHead;
+    newHead->next = NULL;
+}
 
-// Inserting values in linked list - at start
+// Inserting values in linked list - at head
 void insert(Node* &head, int val) {
     Node* newNode = new Node(val);
     newNode->next = head;
     head = newNode;
 }
-// Function for traversing through linked list
+
+// Inserting at the arbitary position - kth
+void add(Node* &head, int k, int val) {
+    if(k == 0) {
+        insert(head, val);
+        return;
+    }
+
+    Node* newNode = new Node(val);
+    int p = 0;
+    Node* temp = head;
+    while(p != k -1) {
+        temp = temp->next;
+        p++;
+    }
+    newNode->next = temp->next;
+    temp->next = newNode;
+}
+
+// Function for traversing through linked list 
 void printLL(Node* head) {
     Node* temp = head;
 
@@ -48,6 +77,10 @@ int main() {
     insert(a, 13);
     printLL(a);
     insert(a, 32);
+    printLL(a);
+    insertEnd(a, 21);
+    printLL(a);
+    add(a, 1, 10);
     printLL(a);
     return 0;
 }

@@ -1,3 +1,4 @@
+package PrimeNumber;
 
 import java.util.*;
 

@@ -1,3 +1,5 @@
+package PrimeNumber;
+
 // Least Divisor
 
 

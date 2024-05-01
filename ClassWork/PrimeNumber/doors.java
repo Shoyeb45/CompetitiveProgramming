@@ -1,3 +1,5 @@
+package PrimeNumber;
+
 import java.util.Scanner;
 
 public class doors {

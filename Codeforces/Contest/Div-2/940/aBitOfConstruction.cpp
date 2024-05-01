@@ -5,7 +5,7 @@ typedef long long ll;
 
 int main() {
     int t;
-    cin >> t;
+    cin >> t;   
     
     while(t--) {
         ll n, k;

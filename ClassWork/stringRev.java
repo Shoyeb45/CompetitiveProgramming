@@ -15,5 +15,6 @@ public class stringRev {
             str = str + Reverse(i) + " ";
         } 
         System.out.println(str);
+        sc.close();
     }
 }

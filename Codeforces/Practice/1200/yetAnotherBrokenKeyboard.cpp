@@ -14,7 +14,7 @@ int main() {
     set<char> typableChar;
     loop(i, k) {
         char x; cin >> x;
-        s.insert(x);
+        typableChar.insert(x);
     }
 
     ll ans = 0;

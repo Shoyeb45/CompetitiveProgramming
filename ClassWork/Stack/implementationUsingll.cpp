@@ -48,6 +48,7 @@ class Stack {
         }
         Node* temp = head;
         head = head->next;
+        sz--;
         free(temp);
     }
     // Is it empty?
@@ -61,13 +62,15 @@ class Stack {
 };
 int main() {
     Stack s;
+
     s.push(3);
     cout << s.top();
     s.push(14);
     s.push(8);
-    cout << "\n Size:" << s.size();
+    cout << "\nSize:" << s.size();
     cout << '\n' << s.top();
     s.pop();
+    cout << "\nSize: " << s.size();
     cout << '\n' << s.top();
     s.push(90);
     s.push(13);

@@ -4,7 +4,7 @@ using namespace std;
 int main() {
     // Declaration 
     queue<int> q;
-    // We can only access frist element and insert at last position
+    // We can only access first element and insert at last position
 
     // push - insert at last position
     q.push(3);   // {3}

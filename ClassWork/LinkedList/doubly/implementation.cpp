@@ -164,6 +164,42 @@ class DoublyLinkedList {
     // For iterable doubly linked list
 };
 
+// class Iterator {
+//     private:
+//         Node* current;
+    
+//     public:
+//         Iterator(Node* start) {
+//             current = start;
+//         }
+
+//     Iterator operator++(int) {
+//         Iterator prev = *this;
+//         current = current->next;
+//         return prev;
+//     }
+//     bool operator!=(const Iterator& other) const {
+//         return current != other.current;
+//     }
+
+//     operator*() const {
+//         return current->data;
+//     }
+
+//     Iterator begin() const {
+//         return Iterator(NULL);
+//     }
+
+//     Iterator end() const {
+//         return Iterator(NULL);
+//     }
+//     DoublyLinkedList :: Iterator begin(DoublyLinkedList & dll) {
+//         return dll.begin();
+//     }
+//     DoublyLinkedList :: Iterator end(DoublyLinkedList & dll) {
+//         return dll.end();
+//     }
+// };
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
@@ -223,5 +259,13 @@ int main() {
         cout << "Doubly linked list is empty\n";
     else
         cout << "Doubly linked list is not empty\n";
+    
+    dll.append(13);
+    dll.append(132);
+    dll.append(1314);
+
+    cout << "Size: " << dll.size() << '\n';
+
+    cout << dll;
     return 0;
 }

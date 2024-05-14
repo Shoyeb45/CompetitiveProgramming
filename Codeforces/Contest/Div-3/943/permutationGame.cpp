@@ -20,10 +20,6 @@ void solve() {
     vector<int> bodya;
     vector<int> sasha;
 
-    // for(auto i: p) {
-    //     cout << i << ' ';
-    // }
-    cout << "\n";
     int i = p_b;
     bodya.push_back(a[p_b]);
     int temp = k - 1;
@@ -34,6 +30,7 @@ void solve() {
         
         bodya.push_back(a[i]);
     }
+    
     temp = k - 1;
     i = p_s;
     sasha.push_back(a[p_s]);
@@ -45,14 +42,37 @@ void solve() {
         sasha.push_back(a[i]);
     }
     
-    for(auto i : bodya) {
-        cout << i << ' ';
+    
+    int mx_sasha = *max_element(sasha.begin(), sasha.end());
+    int mx_bodya = *max_element(bodya.begin(), bodya.end());
+    ll sasha_score = 0;
+    ll bodya_score = 0;
+
+    int cnt = 0;
+    i = 0;
+    while(sasha[i] != mx_sasha) {
+        sasha_score += sasha[i];
+        cnt++;
+        i++;
     }
-    cout << endl;
-    for(auto i: sasha) {
-        cout << i << " ";
+    sasha_score += mx_sasha * (k - cnt);
+    sasha_score = 1LL * k * sasha[0] >= sasha_score? 1LL * k * sasha[0]: sasha_score;
+    i = 0, cnt = 0;
+    while(bodya[i] != mx_bodya) {
+        bodya_score += bodya[i];
+        cnt++;
+        i++;
     }
-    cout << endl;
+    bodya_score += mx_bodya * (k - cnt);
+    bodya_score = 1LL * k * bodya[0] >= bodya_score? 1LL * k * bodya[0]: bodya_score;
+
+    if(bodya_score > sasha_score) {
+        cout << "Bodya\n"; 
+    } else if(bodya_score < sasha_score) {
+        cout << "Sasha\n";
+    } else {
+        cout << "Draw\n";
+    }
 }
 int main() {
     ios_base::sync_with_stdio(false);

@@ -15,21 +15,19 @@ void solve() {
     int a = b[0];
     vector<ll> matrix;
 
-    // loop(i, n) {
-    //     matrix.push_back(a);
-    //     a += d;
-    // }
-
-    // loop(i, n) {
-    //     int new_a = matrix[i];
-    //     loop(i, n - 1) {
-    //         new_a += c;
-    //         matrix.push_back(new_a);
-    //     }
-    // }
-    loop(i, n*n) {
-        matrix[i][j] = a + i * d + j * c;
+    loop(i, n) {
+        matrix.push_back(a);
+        a += d;
     }
+
+    loop(i, n) {
+        int new_a = matrix[i];
+        loop(i, n - 1) {
+            new_a += c;
+            matrix.push_back(new_a);
+        }
+    }
+    
     sort(matrix.begin(), matrix.end());
 
     loop(i, n*n) {

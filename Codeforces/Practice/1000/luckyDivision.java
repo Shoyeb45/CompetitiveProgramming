@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class almostLucky {
+public class luckyDivision {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

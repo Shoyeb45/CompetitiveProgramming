@@ -193,8 +193,21 @@ class Array {
     }
     
     // Spliting the array in two arrays at specified index
-    vector<Array> split(int k) {
-        
+    void split(int k) {
+        if(k < 0 || k >= this->sz) {
+            throw out_of_range("Index out of bound");
+        }
+        Array a;
+        Array b;
+        loop(i, this->sz) {
+            if(i < k) {
+                cout << this->data[i] << ' ';
+            } else {
+                if(i == k)
+                    cout << '\n';
+                cout << this->data[i] << ' ';
+            }
+        }
     }
     // Get size of the array
     int size() {
@@ -227,77 +240,92 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     
-    Array a;
-    cout << (a.empty()? "YES\n" : "NO\n");
-    a.preappend(13);
-    a.append(90);
-    a.append(3);
-    a.preappend(12);
-    a.preappend(8);
-    a.append(13);
+    // Array a;
+    // cout << (a.empty()? "YES\n" : "NO\n");
+    // a.preappend(13);
+    // a.append(90);
+    // a.append(3);
+    // a.preappend(12);
+    // a.preappend(8);
+    // a.append(13);
+    // // a.display();
+
+    // a.insert(69, 2);
+    // a.insert(1, 0);
+    // a.insert(43, a.size());
+    // cout << a.size() << '\n';
+    // // a.display();
+    // cout << '\n';
+
+    // // a.remove(a.size() - 1);
     // a.display();
-
-    a.insert(69, 2);
-    a.insert(1, 0);
-    a.insert(43, a.size());
-    cout << a.size() << '\n';
+    // cout << "Middle element when odd numbers: " << a.middle_element() << '\n';
+    // a.remove(4);
     // a.display();
-    cout << '\n';
+    // cout << "Middle element when even numbers: " << a.middle_element() << '\n';
+    // cout << "Index of first occurence of 3: " << a.first_occurence(3) << '\n';
 
-    // a.remove(a.size() - 1);
-    a.display();
-    cout << "Middle element when odd numbers: " << a.middle_element() << '\n';
-    a.remove(4);
-    a.display();
-    cout << "Middle element when even numbers: " << a.middle_element() << '\n';
-    cout << "Index of first occurence of 3: " << a.first_occurence(3) << '\n';
+    // // Resizing
+    // Array b;
+    // b.append(12);
+    // b.append(43);
+    // cout << "Size of b: " << b.size() << '\n';
+    // b.resize(6);
+    // cout << "After resizing by 6\n";
+    // loop(i, b.size()) {
+    //     cout << b[i] << " ";
+    // }
+    // cout << '\n';
+    // b.resize(3);
+    // loop(i, b.size()) {
+    //     cout << b[i] << " ";
+    // }
+    // cout << '\n';
+    // b[b.size() - 1] = 32;
+    // b.display();
+    // cout << b.size() << '\n';
+    // b.Reverse();
+    // b.display();
+    // b.append(3);
+    // b.append(3);
+    // b.append(45);
+    // b.preappend(10);
+    // b.display();
+    // b.Reverse();
+    // b.display();
 
-    // Resizing
-    Array b;
-    b.append(12);
-    b.append(43);
-    cout << "Size of b: " << b.size() << '\n';
-    b.resize(6);
-    cout << "After resizing by 6\n";
-    loop(i, b.size()) {
-        cout << b[i] << " ";
-    }
-    cout << '\n';
-    b.resize(3);
-    loop(i, b.size()) {
-        cout << b[i] << " ";
-    }
-    cout << '\n';
-    b[b.size() - 1] = 32;
-    b.display();
-    cout << b.size() << '\n';
-    b.Reverse();
-    b.display();
-    b.append(3);
-    b.append(3);
-    b.append(45);
-    b.preappend(10);
-    b.display();
-    b.Reverse();
-    b.display();
-
-    Array d = a.merge(b);
-    cout << "Size of merged array: " << d.size() << '\n';
-    // d.rotate(3);
-    d.rotate(6);
-    d.display();
+    // Array d = a.merge(b);
+    // cout << "Size of merged array: " << d.size() << '\n';
+    // // d.rotate(3);
+    // d.rotate(6);
+    // d.display();
     
-    Array one;
-    one.append(1);
-    // one.append(3);
-    one.append(5);
-    Array two;
-    two.append(2);
-    two.append(4);
-    two.append(6);
-    cout << '\n' << "interleaving\n";
-    Array inter = one.interleave(two);
-    inter.display();
+    // Array one;
+    // one.append(1);
+    // // one.append(3);
+    // one.append(5);
+    // Array two;
+    // two.append(2);
+    // two.append(4);
+    // two.append(6);
+    // cout << '\n' << "interleaving\n";
+    // Array inter = one.interleave(two);
+    // inter.display();
 
+    Array test;
+    test.append(13);
+    test.append(14);
+    test.append(15);
+    test.append(16);
+    test.append(19);
+    test.display();
+    // vector<Array> sp = test.split(1);
+    // loop(i, 2) {
+    //     loop(j, sp[i].size()) {
+    //         cout << sp[i][j] << " ";
+    //     }
+    //     cout << '\n';
+    // }
+    test.split(3);
     return 0;
 }

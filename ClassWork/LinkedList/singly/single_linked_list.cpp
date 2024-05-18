@@ -106,10 +106,27 @@ class Linked_list {
 
     // Method to rotate the linked list by k elements is right
     void rotate(int k) {
-        if(head == nullptr)
+        if(head == nullptr || k = 0 || sz == 0)
             return;
-        k = k % sz;
 
+        k = k % sz;
+        if(k == 0)
+            return;
+        Node* fast = head;
+        Node* slow = head;
+
+        for (int i = 0; i < k; i++) {
+            fast = fast->next;
+        }
+
+        while (fast->next != nullptr) {
+            fast = fast->next;
+            slow = slow->next;
+        }
+
+        fast->next = head;
+        head = slow->next;
+        slow->next = nullptr;
     }
 
     // Reverse a linked list
@@ -202,8 +219,51 @@ class Linked_list {
     }
 
     // Interleaving two linked list
-    void interleave(Linked_list b) {
+    void interleave(Node* b) {
+        if(!this->head) {
+            head = b;
+            return;
+        }
+        if(!b) {
+            return;
+        }
 
+        Node* it1 = head;
+        Node* it2 = b;
+        while(it1 && it2) {
+            Node* temp1 = it1->next;
+            Node* temp2 = it2->next;
+            if(!it1->next) {
+                it1->next = it2;
+                break;
+            }
+            it1->next = it2;
+            it2->next = temp1;
+
+            it1 = temp1;
+            it2 = temp2;
+        }
+        if(it2) {
+            it1->next = it2;
+        }
+        head = it1;
+    }
+
+    // Spliting the Linked list in two linked list at specified index
+    void split(int k) {
+        if(k < 0 || k >= this->sz) {
+            throw out_of_range("Index out of bound");
+        }
+
+        loop(i, this->sz) {
+            if(i < k) {
+                cout << this->head->data << ' ';
+            } else {
+                if(i == k)
+                    cout << '\n';
+                cout << this->head->data << ' ';
+            }
+        }
     }
     // Return size
     int size() {
@@ -253,7 +313,10 @@ int main() {
     Linked_list c;
     // c.head = a.middle();
     // c.display();
-    c.head = a.first_occurence(0);
+    c.head = a.first_occurence(9);
     c.display();
+
+    a.interleave(c.head);
+    a.display();
     return 0;
 }

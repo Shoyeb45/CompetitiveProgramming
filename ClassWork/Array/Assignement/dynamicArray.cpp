@@ -137,6 +137,7 @@ class Array {
             }
         }
         sz = n;
+        return;
     }
 
     // Reverse the array
@@ -174,6 +175,26 @@ class Array {
         reverse(data, data + k);
         reverse(data + k, data + sz);
     }
+
+    // Interleaving two arrays - it wiil return new interleaved array
+    Array interleave(Array a) {
+        Array c;
+        int i = 0, j = 0;
+        while(i < this->sz && j < a.size()) {
+            c.append(this->data[i++]);
+            c.append(a[j++]);
+        }
+
+        while(j < a.size()) {
+            c.append(a[j++]);
+        }
+        while(i < this->sz) {
+            c.append(this->data[i++]);
+        }
+        return c;
+    
+    }
+    
     // Get size of the array
     int size() {
         return this->sz;
@@ -266,5 +287,18 @@ int main() {
     // d.rotate(3);
     d.rotate(6);
     d.display();
+    
+    Array one;
+    one.append(1);
+    // one.append(3);
+    one.append(5);
+    Array two;
+    two.append(2);
+    two.append(4);
+    two.append(6);
+    cout << '\n' << "interleaving\n";
+    Array inter = one.interleave(two);
+    inter.display();
+
     return 0;
 }

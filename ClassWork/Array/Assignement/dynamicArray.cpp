@@ -1,5 +1,4 @@
 // Implementing dynamic array
-
 #include<bits/stdc++.h>
 using namespace std;
 #define loop(i, n) for(int i = 0; i < n; i++)
@@ -7,6 +6,7 @@ typedef long long ll;
 const ll mod = 1000000007;
 #define initial_capacity 5
 #define growth_factor 2
+
 class Array {
     int capacity;
     int sz;
@@ -23,10 +23,6 @@ class Array {
         ~Array() {
             free(data);
         };
-
-
-    // Split
-    // void interleave(Array &a, Array &b);
     
     private:    
     void double_capacity() {
@@ -121,6 +117,7 @@ class Array {
         }
         return -1;
     }
+
     // Resize the array
     void resize(int n) {
         if(n < 0) {
@@ -195,6 +192,10 @@ class Array {
     
     }
     
+    // Spliting the array in two arrays at specified index
+    vector<Array> split(int k) {
+        
+    }
     // Get size of the array
     int size() {
         return this->sz;
@@ -221,8 +222,6 @@ class Array {
         return data[index];
     }
 };
-
-
 
 int main() {
     ios_base::sync_with_stdio(false);

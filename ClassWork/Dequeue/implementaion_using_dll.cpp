@@ -98,17 +98,46 @@ public:
         return val;
     }
 
+    // Get first element
+    int front() {
+        if(sz == 0) {
+            return 0;
+        }
+        return head->data;
+    }
+
+    // Get last element
+    int back() {
+        if(sz == 0) {
+            return 0;
+        }
+        return tail->data;
+    }
+
     // Get size
     int size() {
         return sz;
     }
 
+    // Returns true if it is empty else false
     bool empty() {
         return sz == 0;
     }
 
 };
 int main() {
+    Dequeue dq;
+    dq.push_back(12);
+    dq.push_back(-9);
+    cout << dq.size() << '\n';
+    cout << dq.back() << '\n';
+    cout << dq.front() << '\n';
+
+    dq.push_front(10);
+    cout << dq.front() << '\n';
+    cout << (dq.empty()? "Yeah empty\n": "Not empty\n");
     
+    dq.push_front(89);
+    cout << dq.front() << '\n';
     return 0;
 }

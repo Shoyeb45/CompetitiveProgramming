@@ -8,10 +8,12 @@ class Node {
     public:
         int data;
         Node* next;
+        Node* prev;
     
     Node(int val) {
         data = val;
         next = nullptr;
+        prev = nullptr;
     }
 };
 
@@ -20,6 +22,7 @@ class Dequeue {
     Node* tail;
     int sz;
 
+public:
     Dequeue() {
         head = nullptr;
         tail = nullptr;
@@ -29,14 +32,15 @@ class Dequeue {
     // Pushing at the end
     void push_back(int val) {
         Node* new_node = new Node(val);
-        if(head == NULL) {
+        if(head == nullptr) {
             head = new_node;
             tail = new_node;
             sz++;
             return;
         }
         tail->next = new_node;
-        tail = new_node;
+        new_node->prev = tail;
+        tail = tail->next;
         sz++;
         return;
     }
@@ -44,37 +48,65 @@ class Dequeue {
     // Pushing at the front
     void push_front(int val) {
         Node* new_node = new Node(val);
-        if(head == NULL) {
-            head = new_node;
-            tail = new_node;
-            sz++;
+        if(head == nullptr) {
+            this->push_back(val);
             return;
         }
         new_node->next = head;
+        head->prev = new_node;
         head = new_node;
         sz++;
         return;
     }
 
     // removing from front
-    void pop_front() {
-        if(sz == 0) {
-            throw std:: invalid_argument("Already empty dequeue");
+    int pop_front() {
+        if(!head) {
+            throw std:: invalid_argument("Stack is empty.");
         }
         Node* temp = head;
-        head = head->next;
-        sz--;
-        free(temp);
-    }
-    // removing from back
-    void pop_back() {
-        if(sz == 0) {
-            throw std:: invalid_argument("Already empty dequeue");
+        int val = temp->data;
+
+        if(head == tail) {
+            head = nullptr;
+            tail = nullptr;
+        } else {
+            head = head->next;
+            head->prev = nullptr;
         }
-        Node* temp = tail;
-        head = head->next;
-        free(temp);
+       
+        delete temp;
+        sz--;
+        return val;
     }
+
+    // removing from back
+    int pop_back() {
+        if(!head)
+            pop_front();
+        Node* temp = tail;
+        int val = temp->data;
+        if (head == tail) {
+            head = nullptr;
+            tail = nullptr;
+        } else {
+            tail = tail->prev;
+            tail->next = nullptr;
+        }
+        delete temp;
+        sz--;
+        return val;
+    }
+
+    // Get size
+    int size() {
+        return sz;
+    }
+
+    bool empty() {
+        return sz == 0;
+    }
+
 };
 int main() {
     

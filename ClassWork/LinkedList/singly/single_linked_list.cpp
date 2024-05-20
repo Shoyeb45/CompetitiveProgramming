@@ -106,7 +106,7 @@ class Linked_list {
 
     // Method to rotate the linked list by k elements is right
     void rotate(int k) {
-        if(head == nullptr || k = 0 || sz == 0)
+        if(head == nullptr || k == 0 || sz == 0)
             return;
 
         k = k % sz;
@@ -301,11 +301,17 @@ int main() {
     // a.display();
     Linked_list b;
     a.append(132);
-    a.preppend(7);
+    a.preppend(45);
+    a.preppend(15);
+    a.preppend(10);
     a.preppend(5);
-    b.append(10);
-    b.preppend(9);
-    
+    b.append(49);
+    b.preppend(4);
+    cout << "a\n" ;
+    a.display();
+    cout << "b\n" ;
+    b.display();
+    cout << "Merged list\n";
     a.merge(b.head);
     a.display();
     // a.append(34);
@@ -316,7 +322,7 @@ int main() {
     c.head = a.first_occurence(9);
     c.display();
 
-    a.interleave(c.head);
-    a.display();
+    // a.interleave(c.head);
+    // a.display();
     return 0;
 }

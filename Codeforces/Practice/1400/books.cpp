@@ -1,39 +1,37 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define loop(i, n) for(int i = 0; i < n; i++)
-typedef long long ll;
-const ll mod = 1000000007;
+
+void prefixSum(vector<int> &p,vector<int> &v) {
+    v.push_back(p[0]);
+
+    for(int i=1; i < p.size(); i++) {
+        v.push_back(v[i-1] + p[i]);
+    }
+}
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-
     int n, t;
     cin >> n >> t;
-    vector<int> a(n);
-    loop(i, n)
-        cin >> a[i];
+    vector<int> time;
 
-    int left = 0, right = 0;
-    ll sum = 0;
-    int ans = 0;
-
-    while (left < n && right < n) {
-        while(right < n) {
-            sum += a[right];
-            right++;
-            if(sum > t) {
-                right--;
-                sum -= a[right];
-                break;
-            }
+    for(int i=0; i<n; i++)  {
+        int temp;
+        cin >> temp;
+        time.push_back(temp);
+    }
+    sort(time.begin(), time.end());
+    vector<int> pS;
+    prefixSum(time, pS);
+    
+    if(pS.size() == 1 && pS[0] >= t) cout << 1;
+    else if (pS.size() == 1 && pS[0] < t)   cout << 0;
+    else {
+    for(int i=0; i<=n-2; i++) {
+        if(pS[i+1] > t && pS[i] <= t) {
+            cout << i+1;
         }
-
-        ans = max(ans, right - left + 1);
-        sum -= a[left];
-        left++;
+    }
     }
 
-    cout << ans << endl;
     return 0;
 }

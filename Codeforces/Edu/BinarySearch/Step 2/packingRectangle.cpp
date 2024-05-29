@@ -23,6 +23,14 @@ ll min_side(ll a, ll b, ll n) {
             low = x;
         }
     }
+    // while(low + 1< high) {
+    //     ll x = (high + low)/2;
+    //     if(is_fit(a, b, x, n)) {
+    //         high = x ;
+    //     } else {
+    //         low = x ;
+    //     }
+    // }
     return high;
 }
 

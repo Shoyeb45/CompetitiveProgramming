@@ -30,7 +30,7 @@ string infix_to_postfix(string s) {
                 st.pop();
             }
             st.pop();
-        } else {
+        } else {x
             while(!st.empty() && (priority(st.top()) >= priority(c))) {
                 ans += st.top();
                 st.pop();

@@ -9,29 +9,31 @@ bool is_fit(ll a, ll b, ll x, ll n) {
 }
 
 ll min_side(ll a, ll b, ll n) {
-    ll low = 0, high = 1;
+    ll low = 0, high = INT_MAX;
 
-    while(!is_fit(a, b, high, n)) {
-        high *= 2;
-    }
+    // while(!is_fit(a, b, high, n)) {
+    //     high *= 2;
+    // }
 
-    while(low + 1 < high) {
-        ll x = low + (high - low)/2;
-        if(is_fit(a, b, x, n)) {
-            high = x;
-        } else {
-            low = x;
-        }
-    }
-    // while(low + 1< high) {
-    //     ll x = (high + low)/2;
+    // while(low + 1 < high) {
+    //     ll x = low + (high - low)/2;
     //     if(is_fit(a, b, x, n)) {
-    //         high = x ;
+    //         high = x;
     //     } else {
-    //         low = x ;
+    //         low = x;
     //     }
     // }
-    return high;
+    ll ans = 0;
+    while(low + 1 < high) {
+        ll x = (high + low)/2;
+        if(is_fit(a, b, x, n)) {
+            ans = x;
+            high = x - 1;
+        } else {
+            low = x + 1;
+        }
+    }
+    return ans;
 }
 
 

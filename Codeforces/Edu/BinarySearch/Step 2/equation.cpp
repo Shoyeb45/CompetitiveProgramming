@@ -20,7 +20,7 @@ void solve() {
         double mid = low + (high - low)/2;
         if(check(mid, c)) {
             ans = mid;
-            low = mid + 1;
+            low = mid + 1;2
         // cout << "MID: " << mid << '\n';
         } else {
             high = mid - 1;

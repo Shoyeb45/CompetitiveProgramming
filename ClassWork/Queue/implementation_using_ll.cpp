@@ -49,20 +49,36 @@ class Queue {
     }
 
     // Removing from the front
-    void pop() {
+    int pop() {
         if(sz == 0) {
             throw std:: invalid_argument("Index is not valid");
         }
         Node* temp = head;
+        int data = temp->data;
         head = head->next;
-        free(temp);
+        delete temp;
         sz--;
-        return;
+        return data;
     }
 
     // Returns size of queue
     int size() {
         return sz;
+    }
+
+    // Checking the element is present or not
+    bool contains(int val) {
+        if(head == nullptr) {
+            throw invalid_argument("Queue is empty");
+        }
+        Node *it = head;
+        while(it) {
+            if(it->data == val) {
+                return true;
+            }
+            it = it->next;
+        }
+        return false;
     }
 
     // Is it empty?
@@ -72,17 +88,21 @@ class Queue {
 };
 int main() {
     Queue q;
-    q.push(12);
-    q.push(10);
-    q.push(90);
-    cout << q.front() << '\n';
+    q.push(12); // {12}
+    q.push(10); // {12, 10}
+    q.push(90); // {12, 10, 90}
+    cout << q.front() << '\n'; // 12
+
+    cout << "Does it containes 10: " << (q.contains(10)? "Yes": "No") << '\n';
+    cout << "Does it containes 45: " << (q.contains(45)? "Yes": "No") << '\n';
+
     cout << "Size: " << q.size() << '\n';
-    q.pop();
+    cout << "Removed element: " << q.pop() << '\n';
     cout << q.front() << "\nSize: " << q.size() << '\n';
-    q.pop();
+    cout << "Removed element: " << q.pop() << '\n';
     cout << q.front() << "\nSize: " << q.size() << '\n';
     cout <<( q.empty()? "Queue is empty": "Queue is not empty" )<< '\n';
-    q.pop();
+    cout << "Removed elemet: " << q.pop() << '\n'; 
     cout <<( q.empty()? "Queue is empty": "Queue is not empty" )<< '\n';
 
     return 0;

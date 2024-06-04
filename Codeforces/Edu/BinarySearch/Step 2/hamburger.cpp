@@ -5,8 +5,29 @@ typedef long long ll;
 const ll mod = 1000000007;
 
 bool check(vector<ll> &ing, vector<ll> &n, vector<ll> &p, ll mid, ll r) {
+    vector<ll> ind = ing;
     loop(i, 3) 
-        ing[i] *= mid;
+        ind[i] *= mid;
+    
+    // loop(i, 3) {
+    //     cout << "O - ind: " << i + 1 << " is " << ind[i] << '\n';
+    // }
+    loop(i, 3) {
+        if(ind[i] <= n[i]) {
+            ind[i] = 0;
+        } else {
+            ind[i] -= n[i];
+        }
+    }
+    // loop(i, 3) {
+    //     cout << "ind: " << i + 1 << " is " << ind[i] << '\n';
+    // }
+    ll cost = 0;
+    loop(i, 3) {
+        cost += (p[i] * ind[i]);
+    }
+    // cout << "Cost: " << cost << '\n';
+    return (cost <= r);
     
 }
 
@@ -31,20 +52,29 @@ void solve() {
     ll r;
     cin >> r;
 
-    vector<ll> ingredient(3, 0) = ingredients(s);
+    vector<ll> ingredient = ingredients(s);
 
-    ll low = 0, high = 1e12, ans = 0;
+    ll low = 0, high = 1;
+    while(check(ingredient, n, p, high, r)) {
+        high *= 2;
+    }
+    ll ans =  high;
     while(low <= high) {
         ll mid = low + (high - low)/2;
-        if(check()) {
+        // cout << "Check: " << check(ingredient, n, p, (low+high)/2, r) << '\n';
+        if(check(ingredient, n, p, mid, r)) {
             ans = mid;
+            // cout << "Mid " << mid << '\n';
             low = mid + 1;
         } else {
             high = mid - 1;
         }
     }
+    // cout << check(ingredient, n, p, 499999999998, r) << '\n';
+    // cout << "LOW: " << low << " High: " << high << '\n';
     cout << ans << '\n';
 }
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);

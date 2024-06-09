@@ -5,7 +5,7 @@ typedef long long ll;
 const ll mod = 1000000007;
 
 ll lowerbound(ll n, int target) {
-    ll l = 1, r = 1e6;
+    ll l = 1, r = 1e11;
     ll ans = 0;
     while(l <= r) {
         ll mid = (l + r)/2;

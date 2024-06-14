@@ -19,22 +19,16 @@ void solve() {
     loop(i, n) {
         cin >> a[i];
     }
+    ll mx = 0;
+    ll mn = 0;
 
-    ll neg_sum = 0;
-    int i = 0;
-    while(i < n) {
-        if(a[i] < 0) {
-            neg_sum += a[i++];
-        } else {
-            break;
-        }
-    }
-
-    ll ans = 0;
-    while(i < n)
-        ans = abs(ans + a[i++]);
-    
-    cout << ans + abs(neg_sum) << '\n';
+    loop(i, n) {
+        mx += a[i];
+        mn += a[i];
+        mx = max(mx, abs(mn));
+        mx = max(mx, abs(mx));
+    }    
+    cout << mx << '\n';
 }
 
 int main() {

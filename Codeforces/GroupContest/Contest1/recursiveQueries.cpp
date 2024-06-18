@@ -5,6 +5,7 @@ using namespace std;
 #define range(x) (x).begin(), (x).end()
 typedef long long ll;
 const ll mod = 1000000007;
+#define MAX 1e6 + 1
 
 auto init = []() { 
     ios::sync_with_stdio(0);
@@ -35,22 +36,34 @@ int g(int n) {
 }
 
 int l, r, k;
+vector<vector<int>> val(10, vector<int>(MAX, 0));
+
+void pre_calc() {
+    for(int i = 1; i <= (int)(1e6); i++) {
+        int idx = g(i);
+        val[idx][i]++;
+    }
+    
+    for(int j = 1; j <= 9; j++) {
+        for(int i = 1; i <= (int)(1e6); i++) {
+            val[j][i] += val[j][i - 1];
+        }
+    }
+}
+
 void solve() {
     cin >> l >> r >> k;
     int ans = 0;
-    for(int i = l; i <= r; i++) {
-        if(g(i) == k) {
-            ans++;
-        }
-    }
-    cout << ans << '\n';
+    
+    cout << val[k][r] - val[k][l - 1] << '\n';
 }
+
 
 int main() {
     int tt;
     tt = 1;
     cin >> tt;
-
+    pre_calc();
     while (tt--) {
         solve();
     }

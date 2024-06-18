@@ -5,18 +5,18 @@ typedef long long ll;
 const ll mod = 1000000007;
 
 
-bool check(vector<vector<int>> &a, int mid, int m, vector<int> &balloon) {
-    vector<int> ans(a.size());
-    int n = 0;
+bool check(vector<vector<ll>> &a, ll mid, ll m, vector<ll> &balloon) {
+    vector<ll> ans(a.size());
+    ll n = 0;
     loop(i, a.size()) {
-        int cycle = ((a[i][0] * a[i][1]) + a[i][2]);
-        int ballons = ((mid/cycle) * a[i][1]) + min(a[i][1], ((mid % cycle)/a[i][0]));
+        ll cycle = ((a[i][0] * a[i][1]) + a[i][2]);
+        ll ballons = ((mid/cycle) * a[i][1]) + min(a[i][1], ((mid % cycle)/a[i][0]));
         // cout << "Balloons: " << ballons << '\n';
         n += (ballons);
         ans[i] = ballons;
         mid -= mid/cycle;
     }
-    cout << "n: " << n << '\n';
+    // cout << "n: " << n << '\n';
     if(n >= m) {
         balloon = ans;
     }
@@ -25,32 +25,38 @@ bool check(vector<vector<int>> &a, int mid, int m, vector<int> &balloon) {
 }
 
 void solve() {
-    int m, n;
+    ll m, n;
     cin >> m >> n;
-    vector<vector<int>> a(n, vector<int> (3, 0));
+    vector<vector<ll>> a(n, vector<ll> (3, 0));
     loop(i, n) {
         loop(j, 3) {
             cin >> a[i][j];
         }
     }
-    
-    int low = 0, high = 1;
-    vector<int> balloon(n);
+    if(m == 0) {
+        cout << 0 << endl;
+        for(int i=0; i<n; i++) {
+            cout << "0 ";
+        }
+        return;
+    }
+    ll low = 0, high = 1e13;
+    vector<ll> balloon(n);
     // while(!check(a, high, m, balloon)) {
     //     high *= 2;
     // }
-    int ans = high;
-    // while(low <= high) {
-    //     int mid = low + (high - low)/2;
-    //     if(check(a, mid, m, balloon)) {
-    //         ans = mid;
-    //         high = mid - 1;
-    //     } else {
-    //         low = mid + 1;
-    //     }
-    // } 
+    ll ans = high;
+    while(low <= high) {
+        ll mid = low + (high - low)/2;
+        if(check(a, mid, m, balloon)) {
+            ans = mid;
+            high = mid - 1;
+        } else {
+            low = mid + 1;
+        }
+    } 
     
-    check(a, 12, m, balloon);
+    // check(a, 12, m, balloon);
     cout << ans << '\n';
     loop(i, n)
         cout << balloon[i] << " ";

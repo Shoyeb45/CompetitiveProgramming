@@ -6,3 +6,4 @@
 
 ## 2. Print all the subsets(Power Set)
 * [Recursive solution](./../Searching/subsetGenerate.cpp)
+* [BitMask solution](./../Searching/subsetGenBitMask.cpp)

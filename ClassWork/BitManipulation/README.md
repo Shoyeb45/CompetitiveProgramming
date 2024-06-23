@@ -21,7 +21,7 @@ public:
     }
 };
 ```
-## 3. 3. Single Number - II  Leetcode
+## 3. Single Number - II  Leetcode
 * [Link of problem](https://leetcode.com/problems/single-number-ii/description/)
 * Solutions:
 
@@ -46,3 +46,28 @@ public:
 3. [Sorting](https://leetcode.com/submissions/detail/1297617559/)
 4. [Bit Manipulation - II : Bucket](https://leetcode.com/submissions/detail/1297812914/)
 
+## 3. Single Number - III  Leetcode
+* [Link of problem](https://leetcode.com/problems/single-number-iii/description/)
+* Solutions:
+
+1. Using Hash Map
+```
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+        vector<int> ans;
+        map<int, int> mp;
+
+        for(int i = 0; i < nums.size(); i++)
+            mp[nums[i]]++;
+
+        for(auto & it : mp) 
+            if(it.second != 2)
+                ans.push_back(it.first);
+        return ans;
+    }
+};
+```
+2. [Using Bit Manipulation - I](https://leetcode.com/submissions/detail/1297602713/)
+3. [Sorting](https://leetcode.com/submissions/detail/1297617559/)
+4. [Bit Manipulation - II : Bucket](https://leetcode.com/submissions/detail/1297812914/)

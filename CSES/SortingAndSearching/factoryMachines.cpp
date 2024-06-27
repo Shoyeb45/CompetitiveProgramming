@@ -18,8 +18,9 @@ vector<ll> a;
 bool check(ll mid) {
     ll cnt = 0;
     for(auto x: a) {
-        if(x != 1)
-            cnt += (mid/x);
+        cnt += (mid/x);
+        if(cnt >= t)
+            break;
     }
     return cnt >= t;
 }

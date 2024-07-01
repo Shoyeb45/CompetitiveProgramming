@@ -21,16 +21,9 @@ void solve() {
     loop(i, n)
         cin >> h[i];
     
-    int ans = 0;
-    while(h[0]) {
-        for(int i = 0; i < n - 1; i++) {
-            if(h[i] > h[i + 1]) {
-                h[i]--;
-            }
-        }
-        if(h[n - 1])
-            h[n - 1]--;
-        ans++;
+    int ans = h[n - 1];
+    for(int i = n - 2; i >= 0; i--) {
+        ans = max(ans + 1, h[i]);
     }
     cout << ans << '\n';
 }

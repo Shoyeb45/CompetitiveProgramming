@@ -107,6 +107,28 @@ private:
         }
         return 0;
     }
+
+    bool del(Node *curr, int target) {
+        if(curr == nullptr) {
+            return 0;
+        }
+        Node *prev = nullptr;
+        while(curr) {
+
+            if(curr -> rChild == nullptr || curr -> lChild == nullptr) {
+                return 0;
+            }
+            if(curr -> info == target) {
+                break;
+            } else if(curr -> info > target) {
+                prev = curr;
+                curr = curr -> lChild; 
+            } else {
+                prev = curr;
+                curr = curr -> rChild;
+            }
+        }
+    }
 };
 
 int main() {

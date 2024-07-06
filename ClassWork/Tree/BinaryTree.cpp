@@ -107,6 +107,19 @@ public:
         this->postorderTrav(rootNode);
         cout << '\n';
     }
+
+    // Funtion for searching in binary tree
+    bool search(int val) {
+        if(rootNode == null)
+            return false;
+        
+        queue<Node*> q;
+        q.push(rootNode);
+        
+        while(!q.empty()) {
+            Node *
+        }
+    }
 };
 int main() {
     BinaryTree bt;

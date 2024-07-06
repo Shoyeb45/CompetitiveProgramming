@@ -65,12 +65,19 @@ void solveTP() {
                     break;
                 j++;
             }
+            if(j < m && b[j] != a[i]) {
+                j++;
+            }
         } else {
             while(i < n) {
                 if(a[i] > b[j])
                     break;
                 if(b[j] == a[i])
                     break;
+                i++;
+            }
+            
+            if(i < n && a[i] != b[j]) {
                 i++;
             }
         }

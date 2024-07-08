@@ -60,7 +60,7 @@ public:
 
     // Deleting a particular node from BST
     void remove(T data) {
-        
+        root = this -> rem(root, data);  
     }   
 private:
     // Helper method to insert values
@@ -108,24 +108,46 @@ private:
         return 0;
     }
 
-    bool del(Node *curr, int target) {
-        if(curr == nullptr) {
-            return 0;
-        }
-        Node *prev = nullptr;
-        while(curr) {
-
-            if(curr -> rChild == nullptr || curr -> lChild == nullptr) {
-                return 0;
+    Node* rem(Node *&curr, T data) {
+        if(curr == nullptr)
+            return curr;
+        
+        if(curr -> info > data) {
+            curr -> lChild = rem(curr -> lChild, data);
+            return curr;
+        } else if(curr -> info < data) {
+            curr -> rChild = rem(curr -> rChild, data);
+            return curr;
+        } else {
+            // Case - 1: leaf Node
+            if(curr -> rChild == nullptr && curr -> lChild == nullptr) {
+                delete curr;
+                sz--;
+                return nullptr;
+            } 
+            // Case - 2: One child Node (Only left child)
+            else if(curr -> rChild == nullptr) {
+                Node *temp = curr -> lChild;
+                delete curr;
+                sz--;
+                return temp;
             }
-            if(curr -> info == target) {
-                break;
-            } else if(curr -> info > target) {
-                prev = curr;
-                curr = curr -> lChild; 
-            } else {
-                prev = curr;
-                curr = curr -> rChild;
+            // Case - 3: One child Node (Only right child) 
+            else if(curr -> lChild == nullptr) {
+                Node *temp = curr -> rChild;
+                delete curr;
+                sz--;
+                return temp;
+            }
+            // Case - 4: Two child node
+            else {
+                Node *temp = curr -> lChild;
+                while(temp -> rChild) {
+                    temp = temp -> rChild;
+                }
+                curr -> info = temp -> info;
+                curr -> lChild = rem(temp, temp -> info);
+                return curr;
             }
         }
     }
@@ -139,14 +161,26 @@ int main() {
     bst.insert(6);
     bst.insert(20);
     bst.insert(22);
+    bst.insert(23);
     bst.insert(21);
+    bst.insert(3);
 
-    bst.inorder(); // 6 9 10 19 20 21 22
-    cout << "Size: " << bst.size() << '\n'; // To get size : 7
+    bst.inorder(); // 3 6 9 10 19 20 21 22 23
+    cout << "Size: " << bst.size() << '\n'; // To get size : 9
 
     // Searching 
     cout << (bst.search(6)? "6 Found in binary search tree\n": "6 not found in binary search tree\n");
     cout << (bst.search(23)? "23 Found in binary search tree\n": "23 not found in binary search tree\n");
     cout << (bst.search(19)? "19 Found in binary search tree\n": "19 not found in binary search tree\n");
+
+    bst.remove(10);
+    cout << "Size : " << bst.size() << '\n';
+    bst.inorder();
+
+    cout << '\n';
+
+    bst.remove(6);
+    cout << "Size : " << bst.size() << '\n';
+    bst.inorder();
     return 0;   
 }

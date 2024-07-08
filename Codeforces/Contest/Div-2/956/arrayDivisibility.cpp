@@ -25,7 +25,7 @@ int main() {
     int tt;
     tt = 1;
     cin >> tt;
-
+    
     while (tt--) {
         solve();
     }

@@ -24,7 +24,8 @@
         "unordered_map": "cpp",
         "unordered_set": "cpp",
         "limits": "cpp",
-        "stdexcept": "cpp"
+        "stdexcept": "cpp",
+        "*.tcc": "cpp"
     },
     "java.project.sourcePaths": [
         "Codeforces",

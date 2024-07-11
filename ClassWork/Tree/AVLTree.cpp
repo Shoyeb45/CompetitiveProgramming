@@ -20,13 +20,19 @@ private:
     int sz;
 
 public:
+
+    AVLTree() {
+        sz = 0;
+        root = nullptr;
+    }
+
     // Get the size
     int size() {
         return sz;
     }
 
     // Method to insert in a AVL Tree
-    int insert(int data) {
+    void insert(int data) {
         root = add(root, data);
     }
 
@@ -35,7 +41,76 @@ public:
         inord(root);
         cout << '\n';
     }
+
+    // PostOrder Traversal
+    void postorder() {
+        postOrd(root);
+        cout << '\n';
+    }
+    
 private:
+    
+    // Method for finding height
+    int height(Node *root) {
+        if(root == nullptr) {
+            return 0;
+        }
+        return root -> height;
+    }
+
+    // Method for finding balancing factor
+    int balanceFactor(Node *curr) {
+        if(curr == nullptr)
+            return 0;
+        return height(curr -> left) - height(curr -> right);
+    }
+
+    // Method for right rotation for (left-left node)
+    Node* rightRotate(Node *curr) {
+        // Child of current node
+        Node *x = curr -> left;
+        // Rightsub tree of child of unbalanced node
+        Node *xSubTree = x -> right;
+
+        curr -> left = nullptr;
+        x -> right = curr;
+        curr -> left = xSubTree;
+
+        // Updating Heights 
+        curr -> height = 1 + max(height(curr -> left), height(curr -> right));
+        x -> height = 1 + max(height(x -> left), height(x -> right));
+
+        return x; // x is new node in place of curr
+    }
+
+    // Method for left rotation for (right-right rotate)
+    Node* leftRotate(Node *curr) {
+        // Right child of curr
+        Node *x = curr -> right;
+        // Right sub tree of child of unbalanced node
+        Node *xSubTree = x -> left;
+
+        curr -> right = nullptr;
+        x -> left = curr;
+        curr -> right = xSubTree;
+
+        // Updating Heights
+        curr -> height = 1 + max(height(curr -> left), height(curr -> right));
+        x -> height = 1 + max(height(x -> left), height(x -> right));
+
+        return x;
+    }
+
+    // Helper method for inorder traversal
+    void inord(Node *root) {
+        if(root == nullptr)
+            return;
+
+        inord(root -> left);
+        cout << root -> data << ' ';
+        inord(root -> right);
+    }
+
     // Utility function to insert data
     Node* add(Node *curr, int data) {
         if(curr == nullptr) {
@@ -44,9 +119,9 @@ private:
         }
         
         if(curr -> data > data) {
-            root -> left = add(root -> left, data);
+            curr -> left = add(curr -> left, data);
         } else if(curr -> data < data) {
-            root -> right = add(root -> right, data);
+            curr -> right = add(curr -> right, data);
         } else {
             return curr;
         }
@@ -116,78 +191,25 @@ private:
         return curr;
     }
 
-    // Method for finding height
-    int height(Node *root) {
-        if(root == nullptr) {
-            return 0;
-        }
-        return root -> height;
-    }
-
-    // Method for finding balancing factor
-    int balanceFactor(Node *curr) {
-        if(curr == nullptr)
-            return 0;
-        return height(curr -> left) - height(curr -> right);
-    }
-
-    // Method for right rotation for (left-left node)
-    Node* rightRotate(Node *curr) {
-        // Child of current node
-        Node *x = curr -> left;
-        // Rightsub tree of child of unbalanced node
-        Node *xSubTree = x -> right;
-
-        curr -> left = nullptr;
-        x -> right = curr;
-        curr -> left = xSubTree;
-
-        // Updating Heights 
-        curr -> height = 1 + max(height(curr -> left), height(curr -> right));
-        x -> height = 1 + max(height(x -> left), height(x -> right));
-
-        return x; // x is new node in place of curr
-    }
-
-    // Method for left rotation for (right-right rotate)
-    Node* leftRotate(Node *curr) {
-        // Right child of curr
-        Node *x = curr -> right;
-        // Right sub tree of child of unbalanced node
-        Node *xSubTree = x -> left;
-
-        curr -> right = nullptr;
-        x -> left = curr;
-        curr -> right = xSubTree;
-
-        // Updating Heights
-        curr -> height = 1 + max(height(curr -> left), height(curr -> right));
-        x -> height = 1 + max(height(x -> left), height(x -> right));
-
-        return x;
-    }
-
-    // Helper Function for inorder traversal
-    void inord(Node *root) {
-        if(root == nullptr)
+    // Helper method for Post order traversal
+    void postOrd(Node *root) {
+        if(!root)
             return;
-            
-        inord(root -> left);
         cout << root -> data << ' ';
-        inord(root -> right);
+        postOrd(root -> left);
+        postOrd(root -> right);
     }
 };
 
 int main() {
     AVLTree avl;
-
-    int n;
-    cin >> n;
-    for(int i = 0; i < n; i++) {
-        int x;
-        cin >> x;
-        avl.insert(x);
-    }    
+    avl.insert(9);
+    avl.insert(19);
+    avl.insert(20);
+    avl.insert(25);
+    cout << "PostOrder:\n";
+    avl.postorder();
+    cout << "InOrder:\n";
     avl.inorder();
     return 0;
 }

@@ -36,6 +36,11 @@ public:
         root = add(root, data);
     }
 
+    // For deleting a node
+    void remove(int data) {
+        root = del(root, data);
+    }
+
     // Inorder traversal
     void inorder() {
         inord(root);
@@ -47,6 +52,7 @@ public:
         postOrd(root);
         cout << '\n';
     }
+
     
 private:
     
@@ -199,6 +205,79 @@ private:
         postOrd(root -> left);
         postOrd(root -> right);
     }
+
+    // Helper function for deleting a node
+    Node* del(Node *curr, int data) {
+        if(curr == nullptr)
+            return curr;
+        
+        if(curr -> data > data) {
+            curr -> left = del(curr -> left, data);
+        } else if(curr -> data < data) {
+            curr -> right = del(curr -> right, data);
+        } else {
+            // Leaf node
+            if(curr -> right == nullptr && curr -> left == nullptr) {
+                delete curr;
+                sz--;
+                return nullptr;
+            }
+            // One child node (only left child)
+            else if(curr -> right == nullptr) {
+                Node *temp = curr -> left;
+                delete curr;
+                sz--;
+                return temp;
+            }
+            // One child node (only left child)
+            else if(curr -> left == nullptr) {
+                Node *temp = curr -> right;
+                delete curr;
+                sz--;
+                return temp; 
+            }
+            // Two child nodes
+            else {
+                Node *predecessor = curr -> left;
+                while(predecessor -> right) {
+                    predecessor = predecessor -> right;
+                }
+                curr -> data = predecessor -> data;
+                curr -> left = del(curr -> left, curr -> data);
+                return curr;
+            }
+        }
+
+        if(curr == nullptr)
+            return curr;
+        
+        // Updating height
+        curr -> height = 1 + max(height(curr -> left), height(curr -> right));
+        int balancingFactor = balanceFactor(curr);
+
+        if(balancingFactor > 1) {
+            if(curr -> data > data) {
+                return rightRotate(curr);
+            }
+
+            if(curr -> left -> data < data) {
+                curr -> left = leftRotate(curr -> left);
+                return rightRotate(curr);
+            }
+        } 
+
+        if(balancingFactor < -1) {
+            if(curr -> data < data) {
+                return leftRotate(curr);
+            }
+
+            if(curr -> right -> data > data) {
+                curr -> right = rightRotate(curr -> right);
+                return leftRotate(curr);
+            }
+        }
+        return curr;
+    }
 };
 
 int main() {
@@ -207,6 +286,13 @@ int main() {
     avl.insert(19);
     avl.insert(20);
     avl.insert(25);
+    avl.insert(5);
+    avl.insert(4);
+    avl.insert(90);
+    avl.remove(25);
+    avl.remove(20);
+    avl.remove(90);
+
     cout << "PostOrder:\n";
     avl.postorder();
     cout << "InOrder:\n";

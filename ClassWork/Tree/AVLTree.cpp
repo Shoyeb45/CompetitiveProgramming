@@ -145,7 +145,7 @@ private:
             y 
            / \ 
         */
-        if(balancingFactor > 1 && curr -> data > data) {
+        if(balancingFactor > 1 && curr -> left  -> data > data) {
             return rightRotate(curr);
         }
 
@@ -159,7 +159,7 @@ private:
                           / \ 
                          T3 T4            
          */
-        if(balancingFactor < -1 && curr -> data < data) {
+        if(balancingFactor < -1 && curr -> right -> data < data) {
             return leftRotate(curr);
         }
         // Right-Left Case:
@@ -255,26 +255,26 @@ private:
         curr -> height = 1 + max(height(curr -> left), height(curr -> right));
         int balancingFactor = balanceFactor(curr);
 
-        if(balancingFactor > 1) {
-            if(curr -> data > data) {
-                return rightRotate(curr);
-            }
+        // Left Left Case
+        if (bf > 1 && data < curr.left.data) {
+            return rightRotation(curr);
+        }
 
-            if(curr -> left -> data < data) {
-                curr -> left = leftRotate(curr -> left);
-                return rightRotate(curr);
-            }
-        } 
+        // Left Right Case
+        if (bf > 1 && data > curr.left.data) {
+            curr.left = leftRotation(curr.left);
+            return rightRotation(curr);
+        }
 
-        if(balancingFactor < -1) {
-            if(curr -> data < data) {
-                return leftRotate(curr);
-            }
+        // Right Right Case
+        if (bf < -1 && data > curr.right.data) {
+            return leftRotation(curr);
+        }
 
-            if(curr -> right -> data > data) {
-                curr -> right = rightRotate(curr -> right);
-                return leftRotate(curr);
-            }
+        // Right Left Case
+        if (bf < -1 && data < curr.right.data) {
+            curr.right = rightRotation(curr.right);
+            return leftRotation(curr);
         }
         return curr;
     }
@@ -282,16 +282,23 @@ private:
 
 int main() {
     AVLTree avl;
-    avl.insert(9);
-    avl.insert(19);
-    avl.insert(20);
-    avl.insert(25);
-    avl.insert(5);
-    avl.insert(4);
-    avl.insert(90);
-    avl.remove(25);
-    avl.remove(20);
-    avl.remove(90);
+    // avl.insert(9);
+    // avl.insert(19);
+    // avl.insert(20);
+    // avl.insert(25);
+    // avl.insert(5);
+    // avl.insert(4);
+    // avl.insert(90);
+    // avl.remove(25);
+    // avl.remove(20);
+    // avl.remove(90);
+    int n;
+    cin >> n;
+    for(int i = 0; i < n; i++) {
+        int x;
+        cin >> x;
+        avl.insert(x);
+    }
 
     cout << "PostOrder:\n";
     avl.postorder();

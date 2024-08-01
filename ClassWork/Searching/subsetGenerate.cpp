@@ -12,10 +12,10 @@ void subset_generate(vector<ll> &a, int index, vector<ll> &current) {
         return;
     }
 
+    current.push_back(a[index]);    
     subset_generate(a, index + 1, current);
-    current.push_back(a[index];)    
-    subset_generate(a, index, current);
     current.pop_back();
+    subset_generate(a, index + 1, current);
 } 
 
 int main() {
@@ -27,10 +27,11 @@ int main() {
     loop(i, n)  
         cin >> a[i];
     
-    subset_generate(a, 0, {});
+    vector<ll> curr;
+    subset_generate(a, 0, curr);
     loop(i, subset.size()) {
         loop(j, subset[i].size()) {
-            cout << subset[i] << " ";
+            cout << subset[i][j] << " ";
         }
         cout << '\n';
     }

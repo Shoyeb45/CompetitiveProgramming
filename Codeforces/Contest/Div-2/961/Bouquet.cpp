@@ -6,17 +6,14 @@ using namespace std;
 typedef long long ll;
 const ll mod = 1000000007;
 
-int x, y, k;
+int n;
 void solve() {
-    cin >> x >> y >> k;
-
-    for(int i = 1; i <= k / 2; i++) {
-        cout << x + i << " " << y << '\n';
-        cout << x - i << " " << y << "\n";
-    }
-
-    if(k % 2 == 1) {
-        cout << x << " " << y << '\n';
+    cin >> n;
+    vector<ll> a;
+    map<ll, int> mp;
+    loop(i, n) {
+        cin >> a[i];
+        mp[a[i]]++;
     }
 }
 

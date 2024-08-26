@@ -51,11 +51,6 @@ void solve() {
         }
     }
 
-    // for(auto it : mp) {
-       
-    //         cout << it.first << ' ' << it.second << '\n';
-        
-    // }
     for(auto it : mp) {
         if(it.second != 0) {
             cout << it.first << '\n';

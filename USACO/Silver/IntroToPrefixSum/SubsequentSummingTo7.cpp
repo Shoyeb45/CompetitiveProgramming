@@ -6,24 +6,6 @@ using namespace std;
 typedef long long ll;
 const ll mod = 1000000007;
 
-ll binarySearch(vector<ll> &a, ll low, ll high, ll target) {
-    while(low < high) {
-        ll mid = low + (high - low) / 2;
-        // cout << "a[mid] : " << a[mid] << "\n";
-        // cout << "mid: " << mid << '\n';
-        if(a[mid] == target) {
-            return mid;
-        }
-        else if(a[mid] > target) {
-            high = mid - 1;
-        }
-        else {
-            low = mid + 1;
-        }
-
-    }
-    return -1;
-}
 
 void solve() {
     int n;
@@ -35,21 +17,26 @@ void solve() {
         cin >> a[i];
         prefSum[i + 1] += prefSum[i] + a[i];
     }
-    
+
+    for(int i = 1; i <= n; i++) {
+        prefSum[i] %= 7;
+    } 
+
+    unordered_map<ll, ll> mp;
+    for(int i = n; i >= 1; i--) {
+        mp[prefSum[i]] = i;
+    }
+
     ll ans = 0;
+
     for(ll i = n; i >= 1; i--) {
-        if(prefSum[i] % 7 == 0) {
+        if(prefSum[i] == 0) {
             ans = max(ans, i);
         } 
         else {
-            ll req = prefSum[i] - (prefSum[i] - (prefSum[i] % 7));
-            ll x = binarySearch(prefSum, 1, i - 1, req);
-            
-            if(x != -1) {
-                ans = max(ans, i - (x - 1) - 1);
-            }
+            ans = max(ans, i - mp[prefSum[i]]);
         }
-    }
+    }    
     cout << ans << '\n';
 }
 

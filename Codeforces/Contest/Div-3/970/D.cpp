@@ -37,7 +37,7 @@ void solve() {
     cin >> s; 
 
     vector<int> ans(n);
-        vector<int> dp(n, -1);
+    vector<int> visited(n, -1);
 
     for(int i = 0; i < n; i++) {
         unordered_map<int, int> mp;
@@ -57,7 +57,7 @@ void solve() {
         //     tempAns++;
         // }
         // ans[i] = tempAns;
-        ans[i] = dp[p[i]] = f(p, dp, p[i], i, mp);
+        
     }
 
     for(auto x: ans) {

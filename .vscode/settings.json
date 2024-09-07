@@ -25,7 +25,12 @@
         "unordered_set": "cpp",
         "limits": "cpp",
         "stdexcept": "cpp",
-        "*.tcc": "cpp"
+        "*.tcc": "cpp",
+        "future": "cpp",
+        "memory_resource": "cpp",
+        "shared_mutex": "cpp",
+        "source_location": "cpp",
+        "syncstream": "cpp"
     },
     "java.project.sourcePaths": [
         "Codeforces",

@@ -5,8 +5,9 @@ using namespace std;
 typedef long long ll;
 const ll mod = 32768;
 
-int n;
 
+
+// Simple loops
 // void solve() {
 //     cin >> n;
 //     queue<pair<ll, int>> q;
@@ -23,18 +24,24 @@ int n;
    
 // }
 
-void solve() {
-    cin >> n;
+
+vector<int> v(32769, 16);
+
+// BFS
+void solve(int num) {
+
     queue<pair<ll, int>> q;
-    q.push({1LL * (n % mod), 0});
+    q.push({1LL * (num % mod), 0});
     bool visited[(int)(mod + 1)] = {false};
+
+    // cout << (2 <<  14) << '\n';
     while(true) {
         auto curr = q.front();
         q.pop();
         visited[curr.first] = true;
         // cout << curr.first << " ";
-        if(curr.first == 0) {
-            cout << curr.second << ' ';
+        if(curr.first == 0 || curr.first == (2 >> 14)) {
+            v[num] = curr.second;
             return;
         }
 
@@ -45,7 +52,7 @@ void solve() {
             q.push({(curr.first * 2) % mod, curr.second + 1});
         }
     }
-   
+    
 }
 
 int main() {
@@ -55,7 +62,16 @@ int main() {
     cin >> tt;
 
     while (tt--) {
-        solve();
+        int n;
+        cin >> n;
+
+        if(v[n] < 16) {
+            cout << v[n] << " ";
+        } 
+        else {
+            solve(n);
+            cout << v[n] << " ";
+        }
     }
     
     return 0;

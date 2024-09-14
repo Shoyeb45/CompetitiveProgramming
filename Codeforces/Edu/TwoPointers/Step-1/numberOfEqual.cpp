@@ -36,52 +36,34 @@ void solveTP() {
 
     cin >> n >> m;
     vector<int> a(n), b(m);
+
     loop(i, n)
         cin >> a[i];
     loop(j, m) 
         cin >> b[j];
 
-    int i = 0, j = 0;
-    ll ans = 0;
-    while(i < n && j < m) {
-        if(a[i] == b[j]) {
-            ll num1 = 1, num2 = 1;
-            while(i < n - 1 && a[i] == a[i + 1]) {
-                i++;
-                num1++;
-            }
-            while(j < m - 1 && b[j] == b[j + 1]) {
-                j++;
-                num2++;
-            }
-            ans += 1LL * num1 * num2;
-            i++;
-            j++;
-        } else if(a[i] > a[j]) {
-            while(j < m) {
-                if(b[j] > a[i]) 
-                    break;
-                if(b[j] == a[i])
-                    break;
-                j++;
-            }
-            if(j < m && b[j] != a[i]) {
-                j++;
-            }
-        } else {
-            while(i < n) {
-                if(a[i] > b[j])
-                    break;
-                if(b[j] == a[i])
-                    break;
-                i++;
-            }
-            
-            if(i < n && a[i] != b[j]) {
-                i++;
-            }
+    int ans = 0;
+    int j = 0, i = 0;
+    for(int i = 0; i < n; i++) {
+        int curr = a[i];
+        int cntA = 1, idx = i + 1;
+        while(idx < n && curr == a[idx]) {
+            idx++, cntA++;
         }
+
+        while(j < m && b[j] < curr) {
+            j++;
+        }
+
+        int cntB = 0;
+        while(j < m && b[j] == curr) {
+            j++, cntB++;
+        }
+
+        ans += (cntA * cntB);
+        i = idx - 1;
     }
+   
     cout << ans << '\n';
 }
 

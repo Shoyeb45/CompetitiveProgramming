@@ -1,14 +1,21 @@
 #include<bits/stdc++.h>
 using namespace std;
+#define range(x) (x).begin(), (x).end()
+#define NFS ios_base::sync_with_stdio(false); cin.tie(NULL);
+typedef long long ll;
+const ll mod = 1000000007;
 
 int n;
 
-int ask(string s) {
+bool ask(string s) {
     printf("? %s\n", s.c_str());  
     fflush(stdout);               
 
     int res;
-    scanf("%d", &res);            
+    scanf("%d", &res);      
+    if(res == -1) {
+        exit(0);
+    }      
     return res;
 }
 
@@ -32,29 +39,27 @@ void solve() {
     string ans = "";
     
     while (ans.size() < n) {
-        string temp = ans;
-        if(ask(temp + "0")) {
+        if(ask(ans + "0")) {
             ans += '0';
             continue;
         }
-
-        if(ask(temp + "1")) {
+        if(ask(ans + "1")) {
             ans += '1';
             continue;
         }
+        break;
     }
 
     while (ans.size() < n) {
-        string temp = ans;
-        if(ask("0" + temp)) {
+        if(ask("0" + ans)) {
             ans = '0' + ans;
             continue;
         }
-
-        if(ask("1" + temp)) {
+        else {
             ans = '1' + ans;
             continue;
         }
+        break;
     }
 
     printf("! %s\n", ans.c_str());  

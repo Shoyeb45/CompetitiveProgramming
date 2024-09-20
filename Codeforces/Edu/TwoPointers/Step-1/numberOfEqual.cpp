@@ -35,14 +35,14 @@ void solveTP() {
     // Two pointers solution
 
     cin >> n >> m;
-    vector<int> a(n), b(m);
+    vector<ll> a(n), b(m);
 
     loop(i, n)
         cin >> a[i];
     loop(j, m) 
         cin >> b[j];
 
-    int ans = 0;
+    ll ans = 0;
     int j = 0, i = 0;
     for(int i = 0; i < n; i++) {
         int curr = a[i];

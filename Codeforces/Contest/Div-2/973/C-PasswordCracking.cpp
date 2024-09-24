@@ -13,9 +13,7 @@ bool ask(string s) {
 
     int res;
     scanf("%d", &res);      
-    if(res == -1) {
-        exit(0);
-    }      
+    
     return res;
 }
 

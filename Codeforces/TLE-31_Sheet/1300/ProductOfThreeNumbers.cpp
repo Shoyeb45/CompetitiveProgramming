@@ -8,10 +8,6 @@ template<typename T, typename K> void debug(string v1, T t1, string v2, K t2) { 
 const ll mod = 1000000007;
 
 
-// vector<int> pre[100002];
-// map<int, vector<int>> pre;
-
-
 ll n;
 pair<int, int> check(int y, int x) {
     vector<int> div;

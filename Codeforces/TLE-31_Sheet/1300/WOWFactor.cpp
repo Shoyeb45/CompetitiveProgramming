@@ -27,7 +27,7 @@ void solve() {
             cnt += temp;
         }
     }
-
+    
     cnt = 0;
     for(int i = n - 1; i >= 0; ) {
         if(s[i] == 'o') {

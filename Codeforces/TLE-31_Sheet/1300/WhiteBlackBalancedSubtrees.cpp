@@ -39,6 +39,58 @@ void solve() {
     cout << ans << "\n";
 }
 
+pair<int, int> dfs(vector<int> adj[], int curr, string s, vector<pair<int, int>> &cnt) {
+    if(adj[curr].empty()) {
+        if(s[curr - 1] == 'B') {
+            cnt[curr] = make_pair(1, 0);
+            return cnt[curr];
+        }
+        else {
+            cnt[curr] = make_pair(0, 1);
+            return cnt[curr];
+        }
+    }
+
+    int w = 0, b = 0;
+
+    for(auto node: adj[curr]) {
+        pair<int, int> temp = dfs(adj, node, s, cnt);
+        w += temp.second, b += temp.first;
+    }
+
+    if(s[curr - 1] == 'B') {
+        cnt[curr] = {b + 1, w};
+        // return {b + 1, w};
+        return cnt[curr];
+    }
+    else {
+        cnt[curr] = {b, w + 1};
+        return cnt[curr];
+        // return {b, w + 1};
+    }
+}
+void solve(int x) {
+    cin >> n;
+    vector<int> adj[n + 1];
+    for(int i = 2; i <= n; i++) {
+        int x;
+        cin >> x;
+        adj[x].push_back(i);
+    }
+    vector<pair<int, int>> cnt(n + 1);
+    string s;
+    cin >> s;
+    dfs(adj, 1, s, cnt);
+    ans = 0;
+    for(int i = 1; i <= n; i++) {
+        // debug("black", cnt[i].first, "white", cnt[i].second);
+        if(cnt[i].first == cnt[i].second) {
+            ans++;
+        }
+    }
+
+    cout << ans << "\n";
+}
 int main() {
     NFS
     #ifndef ONLINE_JUDGE
@@ -51,7 +103,7 @@ int main() {
     cin >> tt;
 
     while (tt--) {
-        solve();
+        solve(4);
     }
 
 

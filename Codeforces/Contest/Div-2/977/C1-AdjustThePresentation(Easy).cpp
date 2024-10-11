@@ -8,68 +8,37 @@ template<typename T, typename K> void debug(string v1, T t1, string v2, K t2) { 
 const ll mod = 1000000007;
 
 int n, m, q;
-vector<int> a;
+vector<int> a, b;
 
-bool bs(vector<pair<int, int>> &a, int target, int index) {
-    int high = a.size(), low = 0;
-    
-    while(low <= high) {
-        int mid = low + (high - low) / 2;
-        if(a[mid].first == target && a[mid].second != index) {
-            return true;
-        }
-        else if(a[mid].first > target) {
-            high = mid - 1;
-        }
-        else {
-            low = mid + 1;
-        }
-    }
-    return false;
-}
 void solve() {
     cin >> n >> m >> q;
-    a.resize((int)2 * n + 1);
+    a.resize(n), b.resize(m);
     for(int i = 0; i < n; i++) {
         cin >> a[i];
     }
-    int i = 0, j = n;
 
-    // vector<pair<int, int>> tempb;
-    // unordered_set<int> b;
-    vector<int> b(m);
-    map<int, int> mp;
     for(int i = 0; i < m; i++) {
         cin >> b[i];
-        mp[b[i]] = i;
-    } 
+    }
 
-  
-    // sort(range(tempb));
-    for(int k = 0; k < m ; ) {
-        // debug("ai", a[i]);
-        // debug("bi", b[k]);
-        if(a[i] != b[k]) {
+    int j = 0;
+    
+    set<int> st;
+    for(int i = 0; i < m; i++) {
+
+        if(j >= n) {
+            break;
+        }
+        if(b[i] == a[j]) {
+            st.insert(a[j++]);
+        } 
+        else if(st.find(b[i]) == st.end()) {
             cout << "TIDAK\n";
             return;
         }
-        int c = b[k];
-        while(k < m && b[k] == c) {
-            k++;
-        }
-        if(mp[c] == k - 1) {
-            a[j++] = a[i++];
-        }
-        else {
-            swap(a[i], a[i + 1]);
-        }
-        // k++;    
-        // for(int d = i ; d < j; d++) {
-        //     cout << a[d] << " ";
-        // }
-        // cout << "\n";
     }
     cout << "YA\n";
+
 }
 
 int main() {

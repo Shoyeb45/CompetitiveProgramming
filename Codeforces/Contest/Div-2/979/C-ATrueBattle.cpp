@@ -11,19 +11,18 @@ int n;
 string s;
 void solve() {
     cin >> n >> s;
-    int one = 0;
-    for(auto ch : s) {
-        one += (ch == '1');
+    bool check = 0;
+    for(int i = 0; i < n - 1; i++) {
+        if(s[i] == s[i + 1] && s[i] == '1') {
+            check = 1;
+            break;
+        }
     }
 
-    if(2 * one >= n) {
+    if(s.back() == '1' || s.front() == '1' || check) {
         cout << "YES\n";
     }
     else {
-        if(n % 2 == 0 && 2 * one == n) {
-            cout << "YES\n";
-            return;
-        }
         cout << "NO\n";
     }
 }

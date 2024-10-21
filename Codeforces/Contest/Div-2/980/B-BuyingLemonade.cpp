@@ -7,26 +7,33 @@ template<typename T> void debug(string v1, T t1) { cout << v1 << ": " << t1 << "
 template<typename T, typename K> void debug(string v1, T t1, string v2, K t2) { cout << v1 << ": " << t1 << " " << v2 << ": " << t2 << "\n"; }
 const ll mod = 1000000007;
 
-int n, k;
+int n;
+ll k;
 vector<ll> a;
 void solve() {
     cin >> n >> k;
     a.resize(n);
-    map<ll, int> mp;
     for(auto &x: a) {
         cin >> x;
-        mp[x]++;
     }
-    ll ans = 0;
+
     sort(range(a));
-    for(auto x: a) {
-        ans += (x + 1);
-        if(ans >= k) {
-            cout << ans << "\n";
+    
+    ll cans = 0, mnButton = 0, prev = 0;
+    for(int i = 0; i < n; i++) {    
+        
+        ll tempCan = (a[i] - prev) * (n - i);
+        if(tempCan >= k - cans) {
+            cout << mnButton + (k - cans) << "\n";
             return;
         }
-    }
-    cout << ans << "\n";
+        else {
+            mnButton += tempCan + 1;
+            cans += tempCan;
+        }
+        prev = a[i];
+    } 
+    cout << mnButton << "\n";
 }
 
 int main() {

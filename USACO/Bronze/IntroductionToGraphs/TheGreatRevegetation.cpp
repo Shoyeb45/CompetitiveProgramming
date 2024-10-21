@@ -8,13 +8,50 @@ const ll mod = 1000000007;
 int n, m;
 void solve() {
     cin >> n >> m;
-    vector<int> adj[n + 1];
+    set<int> adj[n + 1];
 
-    for(int i = 0; i < n; i++) {
+    for(int i = 0; i < m; i++) {
         int a, b;
         cin >> a >> b;
-        adj[a].push_back(b);
-        adj[b].push_back(a);
+        adj[a].insert(b);
+        adj[b].insert(a);
+    }
+
+
+    cout << 1;
+    vector<int> fields[5];
+    fields[1].push_back(1);
+
+    for(int i = 2; i <= n; i++) {
+        // cout << "fields: " << "\n";
+        // for(int i = 1; i <= 4; i++) {
+        //     cout << i << " :";
+        //     for(auto x: fields[i]) {
+        //         cout << x << " ";
+        //     } 
+        //     cout << "\n";
+        // }
+        for(int j = 1; j < 5; j++) {
+            if(fields[j].empty()) {
+                cout <<  j;
+                fields[j].push_back(i);
+                break;
+            }
+            else {
+                bool ans = 1;
+                for(int pasture: fields[j]) {
+                    if(adj[pasture].find(i) != adj[pasture].end()) {
+                        ans = 0;
+                        break;
+                    }
+                }
+                if(ans) {
+                    fields[j].push_back(i);
+                    cout << j;
+                    break;
+                }   
+            }
+        }
     }
 
     
@@ -24,6 +61,12 @@ int main() {
     NFS
     int tt;
     tt = 1;
+    // #ifndef ONLINE_JUDGE
+    //     freopen("E:\\Code\\CompetitveProgramming\\stdin-stdout-stderr\\input.in", "r", stdin);
+    //     freopen("E:\\Code\\CompetitveProgramming\\stdin-stdout-stderr\\output.out", "w", stdout);
+    // #endif
+        freopen("revegetate.in", "r", stdin);
+        freopen("revegetate.out", "w", stdout);
 
     while (tt--) {
         solve();

@@ -7,40 +7,50 @@ template<typename T> void debug(string v1, T t1) { cout << v1 << ": " << t1 << "
 template<typename T, typename K> void debug(string v1, T t1, string v2, K t2) { cout << v1 << ": " << t1 << " " << v2 << ": " << t2 << "\n"; }
 const ll mod = 1000000007;
 
-int n;
-vector<ll> a;
+int n, m;
+vector<int> a, b;
+
+bool check(int mid) {
+    int i = n - mid, j = mid;
+    while(i >= 0 && j < n) {
+        if(a[i] >= b[j]) {
+            return false;
+        }
+        i--, j++;
+    }
+    return true;
+}
 void solve() {
-    cin >> n;
-    a.resize(n);
-    for(auto &x: a) {
+    cin >> n >> m;
+    a.resize(n), b.resize(n);
+    a[0] = 1;
+    for(int i = 1; i < n; i++) {
+        cin >> a[i];
+    }
+    for(auto &x: b) {
         cin >> x;
     }
+    sort(range(a)), sort(range(b));
+    // for(auto x: a) {
+    //     cout << x << " ";
+    // } cout << endl;
+    // for(auto x: b) {
+    //     cout << x << " ";
+    // } cout << endl;
 
-    if(n == 1) {
-        cout << 0 << "\n";
-        return;
-    }
-
-    ll prev = a.front(), sum = a[1];
-    int i = 1; 
-    ll ans = 0;
-    while(i < n) {
-        if(a[i] >= prev) {
-            prev = a[i++];
-            continue;
+    int low = 0, high = n, ans = -1;
+    while(low <= high) {
+        int mid = (high + low) / 2;
+        if(check(mid)) {
+            ans = mid;
+            high = mid - 1;
         }
-        sum = 0;
-        int temp = 0;
-        while(i < n && sum < prev) {
-            temp++, sum += a[i++];
+        else {
+            low = mid + 1;
         }
-        if(sum < prev) {
-            ans++;
-        }
-        prev = sum;
-        ans += temp - 1;
     } 
     cout << ans << "\n";
+
 }
 
 int main() {
@@ -52,7 +62,7 @@ int main() {
 
     int tt;
     tt = 1;
-    // cin >> tt;
+    cin >> tt;
 
     while (tt--) {
         solve();

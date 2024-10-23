@@ -27,9 +27,13 @@ void solve() {
     ll days = 0;
     ll curr = 0;
     ll left = 0;
+    for(auto x: c) {
+        cout << x << " ";
+    }
+    cout << "\n";
     for(int i = c.size() - 1; i >= left; i--) {
         curr += c[i];
-        if(curr > k) {
+        if(curr >= k) {
             days += curr / k;
             // rem = curr % k;
             if(curr % k > 0) {

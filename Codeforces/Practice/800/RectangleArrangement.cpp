@@ -10,7 +10,7 @@ const ll mod = 1000000007;
 int n;
 void solve() {
     cin >> n;
-    int mxW = -1, mwH = -1;
+    int mxW = -1, mxH = -1;
     for(int i = 0, x , y; i < n; i++) {
         cin >> x >> y;
         mxW = max(mxW, x), mxH = max(mxH, y);

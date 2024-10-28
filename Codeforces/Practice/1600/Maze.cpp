@@ -21,37 +21,41 @@ void solve() {
         for(int j = 0; j < m; j++) {
             cin >> a[i][j];
             if(a[i][j] == '.') {
-                x = i, y = j;
+                x = i, y = j;  // Store any index with non-empty cell to traverse
             }
         }
     }
 
-    vector<vector<bool>> vis(n, vector<bool>(m, false));
+    vector<vector<bool>> vis(n, vector<bool>(m, false)); // Maintain visited array to visit any node only once
     queue<pair<int, int>> q;
-    q.push({x, y});
+    q.push({x, y}); // Start from stored index
     vis[x][y] = 1;
-    vector<pair<int, int>> ans = {{x, y}};
+    vector<pair<int, int>> ans = {{x, y}}; // Vector to store the indices
 
     while(!q.empty()) {
         auto pt = q.front();
         q.pop();
 
+        // Check all the four sides
         for(int k = 0; k < 4; k++) {
-            int nx = dx[k] + pt.first, ny = dy[k] + pt.second;
-            pair<int, int> curr = {nx, ny};
+            int nx = dx[k] + pt.first, ny = dy[k] + pt.second; 
+            pair<int, int> curr = {nx, ny}; // New Index
 
+            // Check if the index is valid and can we visit it
             if(nx >= 0 && ny >= 0 && nx < n && ny < m  && a[nx][ny] == '.' && !vis[nx][ny]) {
-                ans.push_back({nx, ny});
-                vis[nx][ny] = 1;
-                q.push(curr);
+                ans.push_back({nx, ny}); // Push the index in our array
+                vis[nx][ny] = 1;         // Mark the visited array 
+                q.push(curr);            // Push in the queue
             }
         }
     }
 
-    for(int i = ans.size() - k; i < ans.size(); i++) {
+    // Assign 'X' to the last k cells
+    for(int i = ans.size() - k; i < ans.size(); i++) {  
         a[ans[i].first][ans[i].second] = 'X';
     }
 
+    // Print the given grid
     for(auto vec: a) {
         for(char ch: vec) {
             cout << ch;

@@ -12,6 +12,7 @@ void solve() {
     cin >> s;
     int n = (int)s.size();
     reverse(range(s));
+    // Not needed
     if(n == 1) {
         cout << 0 << "\n";
         return;
@@ -19,23 +20,26 @@ void solve() {
 
     ll one = 0, ans = 0;
     for(int i = 0; i < n; ) {
+
         if(s[i] == '0') {
             while(i < n && s[i] == '0') {
-                ans++, i++;
+                ans++, i++; // Count all the zeroes
             }
             one = 0;
         }
         else {
             one = 0;
             while(i < n && s[i] == '1') {
-                one++, i++;
+                one++, i++; // Count numberOfOne
             }
-            s[i] = '1';
-            if(i >= n && one > 1 || i < n) {
-                ans += one + 1;
+            s[i] = '1'; // Set ith 0 to 1
+
+            if(i >= n && one > 1 || i < n) { // Extra codition for discussed case
+                ans += one + 1; 
             }
         }
     }
+    // Output the answer
     cout << ans << "\n";
 }
 

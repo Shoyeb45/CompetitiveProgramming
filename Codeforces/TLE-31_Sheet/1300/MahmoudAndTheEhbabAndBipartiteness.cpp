@@ -17,14 +17,16 @@ void solve() {
         adj[b].push_back(a);
     }
 
-    vector<int> nodeColor(n + 1, 0); 
+    vector<int> nodeColor(n + 1, 0);  // Color of node, we can do without it also
     vector<bool> vis(n + 1, 0);
     for(int i = 1; i <= n; i++) {
         if(!vis[i]) {
             queue<int> q;
             q.push(i);
-            nodeColor[i] = 1;
-            vis[i] = 1;
+
+            
+            nodeColor[i] = 1; // Color first node
+            vis[i] = 1; // Mark as visited
             while(!q.empty()) {
                 int x = q.front();
                 q.pop();
@@ -32,7 +34,7 @@ void solve() {
                 for(auto node: adj[x]) {
                     if(!vis[node]) {
                         vis[node] = 1;
-                        nodeColor[node] = !nodeColor[x]? 1: 0;
+                        nodeColor[node] = !nodeColor[x]? 1: 0; // Mark according to parent node
                         q.push(node);
                     }
                 }
@@ -40,6 +42,7 @@ void solve() {
         }
     } 
 
+    // --------------- IGNORE -------------------------
     // set<int> st[2];
     // for(int i = 1; i <= n; i++) {
     //     st[nodeColor[i]].insert(i);
@@ -55,12 +58,14 @@ void solve() {
     //     }
     //     ans += (ll)(st[1].size() - temp);
     // }
+    // --------------------------------------------------
 
-    ll color[2] = {0};
+    ll color[2] = {0};  // Number of nodes with 0 or 1 color
     for(int i = 1; i <= n; i++) {
         color[(int)(nodeColor[i])]++;
     }
 
+    // Output final answer, i.e., n_r * n_b  - (n - 1)
     cout << (ll)(1LL * color[0] * color[1] - (n - 1)) << "\n";
 }
 

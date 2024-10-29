@@ -11,23 +11,23 @@ string s;
 void solve() {
     cin >> s;
     int n = s.size();
-    vector<int> suff(n, 0);
+    vector<int> suff(n, 0);  // Suffix sum array of 'Q' till index i from last
     suff[n - 1] = (s[n - 1] == 'Q');
 
     for(int i = n - 2; i >= 0; i--) {
         suff[i] += suff[i + 1] + (s[i] == 'Q');
     }
-    int pref = 0;
+    int pref = 0; // Running pref count of 'Q'
 
     ll ans = 0;
     for(int i = 0; i < n; i++) {
         pref += (s[i] == 'Q');
         if(s[i] == 'A') {
-            ans += pref * suff[i];
+            ans += pref * suff[i];  // Add pref * suff
         }
     }
 
-    cout << ans << "\n";
+    cout << ans << "\n";  // Output answer
 }
 
 int main() {

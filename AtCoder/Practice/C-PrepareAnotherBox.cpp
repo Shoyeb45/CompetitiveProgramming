@@ -7,36 +7,33 @@ template<typename T> void debug(string v1, T t1) { cout << v1 << ": " << t1 << "
 template<typename T, typename K> void debug(string v1, T t1, string v2, K t2) { cout << v1 << ": " << t1 << " " << v2 << ": " << t2 << "\n"; }
 const ll mod = 1000000007;
 
-vector<string> a;
+int n;
+vector<int> b, t;
 void solve() {
-    int numRow = 0;
-    for(int i = 0; i < 8; i++) {
-        string s;
-        cin >> s;
-        bool check = true;
-        for(char c: s) {
-            if(c == '#') {
-                check = false;
-                break;
-            }
+    cin >> n;
+    t.resize(n), b.resize(n - 1);
+    for(auto &x: t) {
+        cin >> x;
+    }
+    for(auto &x: b) {
+        cin >> x;
+    }
+    sort(range(b)), sort(range(t));
+
+    for(int i = 0; i < n - 1; i++) {
+        if(b[i] < t[i]) {
+            cout << -1 << "\n";
+            return;
         }
-        numRow += (int)check;
-        a.push_back(s);
     }
 
-    int numCol = 0;
-    for(int i = 0; i < 8; i++) {
-        bool check = true;
-        for(int j = 0; j < 8; j++) {
-            if(a[j][i] == '#') {
-                check = false;
-                break;
-            }
+    for(int i = n - 2; i >= 0; i--) {
+        if(t[i + 1] > b[i]) {
+            cout << t[i + 1] << "\n";
+            return;
         }
-        numCol += (int)check;
     }
-
-    cout << 1LL * numCol * numRow << "\n";
+    cout << t.front() << "\n";
 }
 
 int main() {

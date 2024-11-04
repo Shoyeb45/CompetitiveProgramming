@@ -9,42 +9,39 @@ const ll mod = 1000000007;
 
 int n;
 vector<int> a;
-bool bs(vector<int> &a, int x, int low) {
-    int high = a.size() - 1;
-    while(low <= high) {
-        int mid = low + (high - low) / 2;
-        if(a[mid] + x <= a.back()) {
-            return true;
-        }
-        else {
-            high = mid - 1;
-        }
-    }
-    return false;
-}
-
 void solve() {
     cin >> n;
     a.resize(n);
     for(auto &x : a) {
         cin >> x;
     }
-    sort(range(a));
 
-    int ans = 0;
-    for(int i = 0; i < n - 1; i++) {
-        ans += bs(a, a[i], i + 1);
-    }
-    reverse(range(a));
-    int ans2 = 0;
-    int t = a[n - 1] + a[n - 2];
-    for(int i = 0; i < n; i++) {
-        if(a[i] <= t) {
-            ans2 = i + 1;
-            break;
+    int ans = n - 2;
+    sort(range(a));
+    for(int r = 2, l = 0; r < n; r++) {
+        while(r - l >= 2 && a[l] + a[l + 1] <= a[r]) {
+            l++;
         }
+        ans = min(ans , n - (r - l + 1));
     }
-    cout << min(ans, ans2) << "\n";
+
+    cout << (ans < 0 ? 0: ans) << "\n";
+}
+
+void solve(int binarySearch) {
+    cin >> n;
+    a.resize(n);
+    for(auto &x : a) {
+        cin >> x;
+    }
+
+    int ans = 2;
+    sort(range(a));
+    for(int i = 0; i < n - 1; i++) {
+        auto it = lower_bound(range(a), a[i] + a[i + 1]);
+        ans = max(ans, (it - a.begin()) - i);
+    }
+    cout << n - ans << "\n";
 }
 
 int main() {
@@ -59,7 +56,7 @@ int main() {
     cin >> tt;
 
     while (tt--) {
-        solve();
+        solve(4);
     }
 
     return 0;

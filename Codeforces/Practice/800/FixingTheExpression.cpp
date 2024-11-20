@@ -59,7 +59,7 @@ int main() {
         freopen("E:\\Code\\CompetitveProgramming\\stdin-stdout-stderr\\output.out", "w", stdout);
         freopen("E:\\Code\\CompetitveProgramming\\stdin-stdout-stderr\\error.out", "w", stderr);
     #endif
-    int tt;
+    int tt;.
     tt = 1;
     cin >> tt;
 

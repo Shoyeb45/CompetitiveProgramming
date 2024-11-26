@@ -2,63 +2,70 @@
 using namespace std;
 #define range(x) (x).begin(), (x).end()
 #define NFS ios_base::sync_with_stdio(false); cin.tie(NULL);
-typedef long long ll;
-const ll mod = 1000000007;
+using ll = long long;
+template<typename T> void debug(string v1, T t1) { cout << v1 << ": " << t1 << "\n"; }
+template<typename T, typename K> void debug(string v1, T t1, string v2, K t2) { cout << v1 << ": " << t1 << " " << v2 << ": " << t2 << "\n"; }
+const int mod = 1000000007;
 
-int m, n;
-vector<ll> t, y, z;
+ll n, m;
+vector<ll> t, numOfBallons, restTime;
 
-bool f(ll time, vector<ll> &ans) {
-    ll res = m;
-    vector<ll> temp(n);
-    for(int i = 0; i < n; i++) {
-        ll cycle = t[i] * z[i] + y[i];
-        ll round = (time) / (cycle);
-        ll timeLeft = time % cycle;
-        ll moreBallon = min(timeLeft / t[i], z[i]);
+bool check(ll mid) {
+    ll ballon = 0;
 
-        ll totalBallon = round * z[i] + moreBallon;
-        temp[i] = min(totalBallon, res);
-        res -= min(totalBallon, res);
+    for (int i = 0; i < n; i++) {
+        ll cycleTime = 1LL * t[i] * numOfBallons[i] + restTime[i];
+        ballon += (mid / cycleTime) * 1LL * numOfBallons[i] + min ((mid % (cycleTime)) / t[i], numOfBallons[i]);
     }
-    if(res) {
-        return 0;
-    }
-    ans = temp;
-    return 1;
+    return ballon >= m;
 }
+
 void solve() {
     cin >> m >> n;
-    t.resize(n), y.resize(n), z.resize(n);
-    for(int i = 0; i < n; i++) {
-        cin >> t[i] >> y[i] >> z[i];
-    }    
+    t.resize(n), numOfBallons.resize(n), restTime.resize(n);
 
-    ll minTime = -1;
-    ll low = 0, high = 1e10;
-    vector<ll> numOfBallons(n);
-    
-    while(low <= high) {
+    for (int i = 0; i < n; i++) {
+        cin >> t[i] >> numOfBallons[i] >> restTime[i];
+    }    
+    ll low = 0, high = 1e9, ans = -1;
+    while (low <= high) {
         ll mid = low + (high - low) / 2;
-        if(f(mid, numOfBallons)) {
-            minTime = mid;
+        if (check(mid)) {
+            ans = mid;
             high = mid - 1;
-        }
+        } 
         else {
             low = mid + 1;
         }
     }
 
-    cout << minTime << '\n';
-
-    for(auto x: numOfBallons) {
-        cout << x << ' ';
+    ll ballons = 0;
+    cout << ans << "\n";
+    for (int i = 0; i < n; i++) {
+        if (ballons >= m) {
+            cout << 0 << " \n"[i == n - 1];
+        }
+        else {
+            ll cycleTime = 1LL * t[i] * numOfBallons[i] + restTime[i];
+            ll currBallon = ans / cycleTime * 1LL * numOfBallons[i] + min ((ans % (cycleTime)) / t[i], numOfBallons[i]);
+            if (currBallon > m - ballons) {
+                cout << m - ballons << " \n"[i == n - 1];
+            }
+            else {
+                cout << currBallon << " \n"[i == n - 1];
+            }
+            ballons += currBallon;
+        }
     }
-    cout << "\n";
 }
 
 int main() {
     NFS
+     #ifndef ONLINE_JUDGE
+        freopen("E:\\Code\\CompetitveProgramming\\stdin-stdout-stderr\\input.in", "r", stdin);
+        freopen("E:\\Code\\CompetitveProgramming\\stdin-stdout-stderr\\output.out", "w", stdout);
+        freopen("E:\\Code\\CompetitveProgramming\\stdin-stdout-stderr\\error.out", "w", stderr);
+    #endif
     int tt;
     tt = 1;
     // cin >> tt;
@@ -66,6 +73,6 @@ int main() {
     while (tt--) {
         solve();
     }
-    
+
     return 0;
 }

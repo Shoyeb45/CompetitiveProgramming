@@ -7,54 +7,52 @@ template<typename T> void debug(string v1, T t1) { cout << v1 << ": " << t1 << "
 template<typename T, typename K> void debug(string v1, T t1, string v2, K t2) { cout << v1 << ": " << t1 << " " << v2 << ": " << t2 << "\n"; }
 const ll mod = 1000000007;
 
-int n;
-vector<pair<int, int>> a;
 void solve() {
+    int n;
+    vector<vector<int>> a;
     cin >> n;
-    a.resize(n);
+    a.resize(2, vector<int> (n));
 
-    for (int i = 0; i < n; i++) {
-        cin >> a[i].first;
-    }
-    for (int i = 0; i < n; i++) {
-        cin >> a[i].second;
-    }
-
-    ll mxVal = a[0].first + a[0].second;
-    for (int i = 1; i < n; i++) {
-        if (a[i].first + a[i].second > mxVal) {
-            mxVal = a[i].first + a[i].second;
+    for (int j = 0; j < 2; j++) {
+        for (int i = 0; i < n; i++) {
+            cin >> a[j][i];
         }
     }
+    ll sum = INT_MIN;
 
     for (int i = 0; i < n; i++) {
-        if (a[i].first + a[i].second == mxVal) {
-            a.erase(a.begin() + i);
-        }
+        ll temp = a[0][i] + a[1][i];
+        for (int j = 0; j < n; j++) {
+            if (i != j) {
+                temp += max(a[0][j], a[1][j]);
+            }
+        } 
+        sum = max (sum, temp);
     }
-
-    sort(a.begin(), a.end(), [&](const pair<int, int> p1, const pair<int, int> p2) {
-        return p1.second >= p2.second;
-    });
-
-    ll rowOne = 0;
-    for (auto x : a) {
-        rowOne += x.first;
-    }
-
-    ll curTwo = 0;
-    int j = 0;
-    ll ans = mxVal + rowOne;
-
-    for (int i = 1; i <= n - 1; i++) {
-        rowOne -= a[j].first, curTwo += a[j++].second;
-        // debug("one", rowOne, "two", curTwo);
-        ll temp = (mxVal + rowOne + curTwo); 
-        ans = max(ans, temp);
-    }
-    cout <<ans << "\n";
+    cout << sum << "\n";
 }
 
+void solve(int in_linear_time) {
+    int n;
+    cin >> n;
+    vector<vector<int>> a(2, vector<int> (n));
+
+     for (int j = 0; j < 2; j++) {
+        for (int i = 0; i < n; i++) {
+            cin >> a[j][i];
+        }
+    }
+    ll sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += max (a[0][i], a[1][i]);
+    }
+
+    ll ans = INT_MIN;
+    for (int i = 0; i < n; i++) {
+        ans = max (ans, sum + min(a[0][i], a[1][i]));
+    }
+    cout << ans << "\n";
+}
 int main() {
     NFS
      #ifndef ONLINE_JUDGE
@@ -67,7 +65,7 @@ int main() {
     cin >> tt;
 
     while (tt--) {
-        solve();
+        solve(4);
     }
 
     return 0;

@@ -8,43 +8,13 @@ template<typename T, typename K> void debug(string v1, T t1, string v2, K t2) { 
 const ll mod = 1000000007;
 
 
-int n;
-ll k;
-map<ll, int> mp;
-vector<ll> a;
+/// Using map : time complexity -> O(nlogn)
+void solveNLogN() {
+    int n;
+    ll k;
+    map<ll, int> mp;
+    vector<ll> a;
 
-bool good(ll mn, ll mx) {
-    return mp.empty()? false: mx - mn <= k;
-}
-
-void add(int index) {
-    mp[a[index]]++;
-}
-
-void update(ll &mn, ll &mx) {
-    if(!mp.empty()) {
-        mn = mp.begin() -> first, mx = mp.rbegin() -> first;
-    }
-}
-
-ll sumOfN(ll x) {
-    return (1LL * x * (x + 1)) / 2;
-}
-
-void remove(int index) {
-    mp[a[index]]--;
-    if(mp[a[index]] == 0) {
-        mp.erase(mp.find(a[index]));
-    }
-}
-
-void printmp(string msg) {
-    cout << msg << "\n";
-    for(auto &x: mp) {
-        debug("key", x.first, "value", x.second);
-    }
-}
-void solve() {
     cin >> n >> k;
     a.resize(n);
     for(auto &x: a) {
@@ -54,19 +24,88 @@ void solve() {
     int left = 0;
     ll ans = 0, mn = 0, mx = 0;
 
+    auto good = [&](ll mn, ll mx) -> bool {
+        return mp.empty()? false: mx - mn <= k;
+    };
+
+    auto add = [&] (int index) {
+    mp[a[index]]++;
+    };
+
+    auto update = [&](ll &mn, ll &mx) {
+        if(!mp.empty()) {
+            mn = mp.begin() -> first, mx = mp.rbegin() -> first;
+        }
+    };
+
+    auto remove = [&](int index) {
+        mp[a[index]]--;
+        if(mp[a[index]] == 0) {
+            mp.erase(mp.find(a[index]));
+        }
+    };
+
     for(int right = 0; right < n; right++) {
         add(right);
-        printmp("Add " + to_string(right));
         update(mn, mx);
-        debug("mn", mn, "mx", mx);
+
         while(left < n && !good(mn, mx)) {
             remove(left++);
-            printmp("remove " + to_string(left - 1));
             update(mn, mx);
-            debug("mn", mn, "mx", mx);
         }
         ans += right - left + 1;
     }
+    cout << ans << "\n";
+}
+
+/// Using deque and observation : time complexity -> O(n)
+void solveN() {
+    int n;
+    ll k;
+    vector<ll> a;
+
+    cin >> n >> k;
+    a.resize(n);
+    for (auto &x : a) {
+        cin >> x;
+    }
+
+    deque<ll> for_mn, for_mx;
+
+    auto add = [&](int idx) {
+        while (!for_mn.empty() && a[idx] < for_mn.back()) {
+            for_mn.pop_back();
+        }
+        for_mn.push_back(a[idx]);
+
+        while (!for_mx.empty() && a[idx] > for_mx.back()) {
+            for_mx.pop_back();
+        }
+        for_mx.push_back(a[idx]);
+    };
+
+    auto remove = [&](int idx) {
+        if (a[idx] == for_mn.front()) {
+            for_mn.pop_front();
+        }
+
+        if (a[idx] == for_mx.front()) {
+            for_mx.pop_front();
+        }
+    };
+
+    ll ans = 0;
+
+    for (int left = 0, right = 0; right < n; right++) {
+        add(right);
+
+        while (left <= right && for_mx.front() - for_mn.front() > k) {
+            remove(left++);
+        }
+
+        ans += right - left + 1;
+    }   
+
     cout << ans << "\n";
 }
 
@@ -82,7 +121,7 @@ int main() {
     // cin >> tt;
 
     while (tt--) {
-        solve();
+        solveN();
     }
 
 

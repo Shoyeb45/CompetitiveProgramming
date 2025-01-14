@@ -59,8 +59,9 @@ void solve() {
     for (int i = 0; i < n; i++) {
         int idx_up = ub(a, i + 1, sum - x - a[i]), idx_lb = lb(a, i + 1, sum - y - a[i]);
 
-        if (idx_up >= idx_lb)
-        ans += idx_up - idx_lb + 1;
+        if (idx_up >= idx_lb) {
+            ans += idx_up - idx_lb + 1;
+        }
     }
     cout << ans << "\n";
 }

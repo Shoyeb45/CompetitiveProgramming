@@ -44,7 +44,7 @@ void solve() {
             ans = min(ans, it.second - 1);
         }
         else if(it.first == a[0] || it.first == a[N - 1]) {
-            ans = min(ans, it.second );
+            ans = min(ans, it.second);
         }
         else {
             ans = min(ans, it.second + 1);

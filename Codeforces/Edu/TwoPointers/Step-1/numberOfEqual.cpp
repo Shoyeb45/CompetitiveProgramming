@@ -32,39 +32,42 @@ void solveBS() {
 }
 
 void solveTP() {
-    // Two pointers solution
-
     cin >> n >> m;
-    vector<ll> a(n), b(m);
+    vector<int> a(n), b(m);
 
-    loop(i, n)
-        cin >> a[i];
-    loop(j, m) 
-        cin >> b[j];
+    for (auto &x : a) {
+        cin >> x;
+    }
+    for (auto &x : b) {
+        cin >> x;
+    }
 
     ll ans = 0;
-    int j = 0, i = 0;
-    for(int i = 0; i < n; i++) {
-        int curr = a[i];
-        int cntA = 1, idx = i + 1;
-        while(idx < n && curr == a[idx]) {
-            idx++, cntA++;
-        }
 
-        while(j < m && b[j] < curr) {
+    for (int i = 0, j = 0; i < n && j < m; ) {
+        if (a[i] == b[j]) {     
+            int temp_i = i, temp_j = j;
+            while (temp_i < n && a[temp_i] == a[i]) {
+                temp_i++;
+            }
+
+            while (temp_j < m && b[temp_j] == b[j]) {
+                temp_j++;
+            }
+
+            // cout << (temp_j - j) << " " << (temp_i - i) << "\n"; 
+            ans += 1LL * (temp_j - j) * (temp_i - i);
+            i = temp_i, j = temp_j;
+        }
+        else if (a[i] > b[j]) {
             j++;
         }
-
-        int cntB = 0;
-        while(j < m && b[j] == curr) {
-            j++, cntB++;
+        else {
+            i++;
         }
-
-        ans += (cntA * cntB);
-        i = idx - 1;
     }
-   
-    cout << ans << '\n';
+
+    cout << ans << "\n";
 }
 
 int main() {

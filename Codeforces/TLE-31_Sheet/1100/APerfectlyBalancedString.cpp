@@ -11,6 +11,23 @@ string s;
 void solve() {
     cin >> s;
     
+    set<char> st;
+    int k;
+    for (k = 0; k < s.size(); k++) {
+        if (st.find(s[k]) == st.end()) {
+            st.insert(s[k]);
+        } else {
+            break;
+        }
+    }
+
+    for (int i = k; i < s.size(); i++) {
+        if (s[i] != s[i - k]) {
+            cout << "NO\n";
+            return;
+        }
+    }
+    cout << "YES\n";
 }
 
 int main() {
@@ -22,7 +39,7 @@ int main() {
     #endif
     int tt;
     tt = 1;
-    // cin >> tt;
+    cin >> tt;
 
     while (tt--) {
         solve();

@@ -15,41 +15,33 @@ using max_heap = priority_queue<T>;
 const ll mod = 1000000007;
 
 void solve() {
-    int n, k;
-    cin >> n >> k;
-   
-    vector<int> a(n);
-    for (int &i: a) {
-        cin >> i;
-    }
-    vector<int> idx(k + 1, -1);
-    vector<vector<int>> mx(k + 1);
+    int n;
+    cin >> n;
+    map<int, int> mp;
+    int x = n * (n - 1) / 2;
 
-    for (int i = 0; i < n; i++) {
-        int last_idx = idx[a[i]];
-        int steps = i - last_idx - 1;
-        // if (mx[a[i]].empty() || mx[a[i]].back() <= steps) {
-            mx[a[i]].push_back(steps);
-        // }
-        idx[a[i]] = i;
-    }
-    for (int i = 1; i <= k; i++) {
-        // if (mx[i].back() <= n - idx[i] - 1) {
-            mx[i].push_back(n - idx[i] - 1);
-        // }
-    }
-
-    int ans = INT_MAX;
-    for (int i = 1; i <= k; i++) {
-        if (!mx[i].empty()) {
-            sort(range(mx[i]));
-            int last = mx[i].back();
-            mx[i].pop_back();
-            mx[i].push_back(last / 2);
-            ans = min(ans, *max_element(range(mx[i])));
+    while (x--) {
+        int t;
+        cin >> t;
+        mp[t]++;
+    }   
+    vector<int> ans;
+    
+    for (auto it: mp) {
+        int freq = it.second;
+        while (freq > 0) {
+            ans.push_back(it.first);
+            freq -= n - ans.size();
         }
+
     }
-    cout << ans << "\n";
+
+    while (ans.size() < n) {
+        ans.push_back(1e9);
+    }
+    for (int i = 0; i < n; i++) {
+        cout << ans[i] << " \n"[i == n - 1];
+    }
 }
 
 int main() {

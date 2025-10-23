@@ -12,13 +12,12 @@ void solve() {
     cin >> n >> k;
 
     if (n % 2 == 0) {
-        debug("n", n);
         n = (k % n) == 0 ? n : k % n;
         cout << n << "\n";
+        return;
     }
-    else {
-        if(k < n / 2)
-    }
+    k--;
+    cout << (k + (k / (n / 2))) % n + 1 << "\n";
 }
 
 int main() {

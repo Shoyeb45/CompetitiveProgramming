@@ -14,28 +14,33 @@ const ll mod = 1000000007;
 int n;
 int a[8001];
 ll cost[8001];
+ll dp[8001];
 
-ll f(int prev = a[0], int i = 1) {
-    debug(i, prev);
-    if (i >= n) {
-        return 0;
-    }
-    if (prev > a[i]) {
-        // choose i or i - 1
-        return min(cost[i] + f(prev, i + 1), cost[i - 1] + f(a[i], i + 1));
-    } 
-    return  f(a[i], i + 1);
-}
+
 
 void solve() {
     cin >> n;
+    
     for (int i = 0; i < n; i++) {
         cin >> a[i];
     }    
     for (int i = 0; i < n; i++) {
         cin >> cost[i];
     }    
-    cout << f() << "\n";
+    ll sum = 0;
+    ll mx_ele = INT_MIN;
+    for (int i = 0; i < n; i++) {
+        ll mx = INT_MIN;
+        for (int j = 0; j < i; j++) {
+            if (a[j] <= a[i]) {
+                mx = max(mx, dp[j]);
+            }
+        }
+        dp[i] = cost[i] + (mx == INT_MIN ? 0: mx);
+        sum += cost[i];
+        mx_ele = max(mx_ele, dp[i]);
+    }
+    cout << sum - mx_ele  << "\n";
 }
 
 int main() {
@@ -47,7 +52,7 @@ int main() {
     #endif
     int tt;
     tt = 1;
-    // cin >> tt;
+    cin >> tt;
 
     while (tt--) {
         solve();

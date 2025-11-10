@@ -14,50 +14,49 @@ const ll mod = 1000000007;
 void solve() {
     int n, m;
     cin >> n >> m;
-    map<ll, ll> mp;
+    multiset<ll> swords;
     for (int i = 0; i < n; i++) {
         ll x;
         cin >> x;
-        mp[x]++;
-    }    
-
-    vector<pair<ll, ll>> vp(m); // (b_i, c_i)
-
-    for (auto &x: vp) {
-        cin >> x.first;
+        swords.insert(x);
+    }   
+    vector<pair<ll, ll>> stage1, stage2;
+    {
+        vector<ll> temp(m);
+        for (int i = 0; i < m; i++) {
+            cin >> temp[i];
+        }     
+        for (int i = 0; i < m; i++) {
+            ll x;
+            cin >> x;
+            if (x == 0) {
+                stage2.push_back({temp[i], x});
+            }  else {
+                stage1.push_back({temp[i], x});
+            }
+        }
     }
-    for (auto &x: vp) {
-        cin >> x.second;
-    }
-    sort(range(vp));
-    priority_queue<int> pq;
-
+    sort(range(stage1));
     ll ans = 0;
-    
-    int idx = 0;
-    while (true) {
-        if (mp.empty()) {
+    for (auto& [b, c]: stage1) {
+        auto it = swords.lower_bound(b);
+        if (it == swords.end()) {
             break;
         }
-        ll sword = mp.rbegin()->first;
-        while (idx < m && sword >= vp[idx].first) {
-            pq.push(vp[idx].second);
-            idx++;
-        }
-        if (pq.empty()) {
-            break;
-        }
-        ll c = pq.top();
-        pq.pop();
         ans++;
-        mp[sword]--;
-        if (mp[sword] == 0) {
-            mp.erase(sword);
-        }
-        if (c > 0) {
-            mp[max(c, sword)]++;
-        }
+        ll ele = max(c, *it);
+        swords.erase(it);
+        swords.insert(ele);
     }
+    sort(range(stage2));
+    for (auto& [b, _]: stage2) {
+        auto it = swords.lower_bound(b);
+        if (it == swords.end()) {
+            break;
+        }
+        ans++;
+        swords.erase(it);
+    }   
     cout << ans << "\n";
 }
 
@@ -78,3 +77,7 @@ int main() {
 
     return 0;
 }
+
+
+
+3.

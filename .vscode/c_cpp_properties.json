@@ -18,7 +18,7 @@
         {
             "name": "Win64",
             "includePath": [
-                "${workspaceFolder}/**"
+                "e:/Code/CompetitveProgramming/**"
             ],
             "defines": [
                 "_DEBUG",
@@ -28,7 +28,13 @@
             "cStandard": "c11",
             "cppStandard": "gnu++14",
             "intelliSenseMode": "windows-gcc-x64",
-            "compilerPath": "C:/msys64/ucrt64/bin/g++.exe"
+            "compilerPath": "C:/msys64/mingw64/bin/g++.exe",
+            "compilerPathInCppPropertiesJson": "C:/msys64/ucrt64/bin/g++.exe",
+            "mergeConfigurations": false,
+            "recursiveIncludes": {},
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true
+            }
         }
     ],
     "version": 4

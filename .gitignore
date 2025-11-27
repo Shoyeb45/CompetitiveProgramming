@@ -2,3 +2,7 @@ stdin-stdout-stderr
 **/*.exe
 **/*.java
 .vscode
+**/*.
+
+# Editor
+.vscode/

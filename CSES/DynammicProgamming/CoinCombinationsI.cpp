@@ -17,17 +17,7 @@ void solve() {
     vector<int> a(n);
     for (int& x: a) cin >> x;
 
-    vector<int> temp = a;
-    sort(range(temp));
-    int k = n - x;
-
-    for (int i = k; i <= n - k - 1; i++) {
-        if (temp[i] != a[i]) {
-            cout << "NO\n";
-            return;
-        }
-    }
-    cout << "YES\n";
+    
 }   
 
 
@@ -41,7 +31,7 @@ int main() {
     #endif
     int tt;
     tt = 1;
-    cin >> tt;
+    // cin >> tt;
 
     for (int i = 1; i <= tt; i++) {
         solve();

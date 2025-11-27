@@ -11,28 +11,40 @@ using namespace std;
 typedef long long ll;
 const ll mod = 1000000007;
 
+
 void solve() {
-    ll n, h;
-    cin >> n >> h;
+    int n;
+    cin >> n;
 
-    vector<ll> a(n);
+    map<int, int> mp;
+    for (int i = 0, x; i < n; i++) {
+        cin >> x;
+        mp[x]++;
+    }
 
-    for (int i = 0; i < n; i++) {
-        cin >> a[i];
+    vector<int> a;
+    int mx_c = INT_MIN;
+    for (auto& it: mp) {
+        a.push_back(it.second);
+        mx_c = max(mx_c, it.second);
     }
-    sort(rrange(a));
-    ll sum = a[0] + a[1];
-    ll k = (h + sum - 1) / sum;
-    debug(k);
-    
-    if ((1LL * sum * k) - a[1] >= h) {
-        cout << (ll) 2 * k - 1 << "\n";
-        return;
-    }
-    debug(2 * k);
-    cout << 2 * k << "\n";
+    sort(range(a));
+    debug(mx_c);
+    vector dp(a.size() + 1, vector<ll>(mx_c));
+
+    std::function<ll(int, int)> f = [&](int idx, int sum) -> int {
+        if (idx == a.size()) {
+            return 0;
+        }
+
+        int ans = f(idx + 1, sum);
+        if (sum - a[idx] >= 0) {
+            ans += 1 + f(idx + 1, sum - a[idx]);
+        }
+        return ans;
+    };
+    cout << f(0, mx_c) << "\n";
 }   
-
 
 
 int main() {
@@ -45,7 +57,7 @@ int main() {
     int tt;
     tt = 1;
     cin >> tt;
-    debug(tt);
+
     for (int i = 1; i <= tt; i++) {
         solve();
     }

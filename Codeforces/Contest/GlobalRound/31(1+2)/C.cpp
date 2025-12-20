@@ -14,62 +14,70 @@ const ll mod = 1000000007;
 void solve() {
     int n, k;
     cin >> n >> k;
-    
-    auto is_setable = [&](int num, int idx) -> bool {
-        num = (num | (1 << idx));
-        // debug(num, idx);
-        return num <= n;
-    };
- 
-    if (k % 2 == 0) {
-        for (int i = 0; i < k - 2; i++)
-            cout << n << " ";
-        
-        int x = 0, y = 0;
-        int idx;
-        for (idx = 31; idx >= 0; idx--) {
-            if (((1 << idx) & n)) break;
+
+    vector<int> a(k);
+
+    int mx_bit = -1;
+    for (int i = 30; i >= 0; i--) 
+        if (((1 << i) & n)) {
+            mx_bit = i;
+            break;
         }
+        
+    vector<bool> tight(k, true);
 
-        debug(idx);
-        auto chk = [&]() -> void {
-            int mx = max(x, y), mn = min(x, y);
-            x = mn, y = mx;
-        };
-        for (int i = idx; i >= 0; i--) {
-            bool bit = ((1 << i) & n);
+    for (int idx = mx_bit; idx >= 0; idx--) {
+        int mask = (1 << idx);
+        bool bit = ((1 << idx) & n);
 
-            debug(i, bit, x, y);
-            if (bit) {
-                if (is_setable(x, i)) {
-                    x = (x | (1 << i));
-                    chk();
-                    continue;
-                }
-                else if (is_setable(y, i)) {
-                    y = (y | (1 << i));
-                    chk();
-                    continue;
+        if (bit) {
+            if (k % 2 == 1) {
+                for (int i = 0; i < k; i++) {
+                    a[i] |= mask;
                 }
             } else {
-                if (is_setable(x, i) && is_setable(y, i)) {
-                    x = (x | (1 << i));
-                    y = (y | (1 << i));
-                    chk();
+                // set all bit to 1 leaving 1 number, which is tight
+                int j = -1;
+                for (int i = 0; i < k; i++) {
+                    if (tight[i]) {
+                        j = i;
+                        break;
+                    }
+                }
+                debug(j);
+                j = (j == -1 ? 0: j);
+
+                for (int i = 0; i < k; i++) {
+                    if (i != j) {
+                        a[i] |= mask;
+                    }
                 }
             }
-        }
-        debug(x, y);
-        if (x + y >= n) {
-            cout << x << " " << y << "\n";
+
+            for (int i = 0; i < k; i++) {
+                if (tight[i] && ((a[i] >> idx) & 1) == 0) {
+                    tight[i] = false;
+                }
+            }
         } else {
-            cout << n << " " << 0 << "\n";
+            vector<int> loose;
+            for (int i = 0; i < k; i++) {
+                if (!tight[i]) {
+                    loose.push_back(i);
+                }
+            }
+            if (loose.size() % 2 == 1 && !loose.empty())
+                loose.pop_back();
+
+            for (auto x: loose) {
+                a[x] |= mask;
+            }
         }
-        return;
-    } 
+
+    }
 
     for (int i = 0; i < k; i++) {
-        cout << n << " \n"[i == k - 1];
+        cout << a[i] << " \n"[i == k - 1];
     }
 }   
 
@@ -78,9 +86,9 @@ void solve() {
 int main() {
     NFS
     #ifndef ONLINE_JUDGE
-        freopen("/home/shoyeb45/Codes/CompetitiveProgramming/stdin-stdout-stderr/in.txt", "r", stdin);
-        freopen("/home/shoyeb45/Codes/CompetitiveProgramming/stdin-stdout-stderr/out.txt", "w", stdout);
-        freopen("/home/shoyeb45/Codes/CompetitiveProgramming/stdin-stdout-stderr/err.txt", "w", stderr);
+        freopen("/Users/Keerthi/Codes/CompetitiveProgramming/stdin-stdout-stderr/in.txt", "r", stdin);
+        freopen("/Users/Keerthi/Codes/CompetitiveProgramming/stdin-stdout-stderr/out.txt", "w", stdout);
+        freopen("/Users/Keerthi/Codes/CompetitiveProgramming/stdin-stdout-stderr/err.txt", "w", stderr);
     #endif
     int tt;
     tt = 1;
